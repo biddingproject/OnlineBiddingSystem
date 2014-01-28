@@ -17,17 +17,7 @@
 	xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
 	<!-- The datasource is bound into JNDI at this location. We reference this 
 		in META-INF/persistence.xml -->
-<!-- 	<datasource jndi-name="java:jboss/datasources/BiddingSystemDS" -->
-<!-- 		pool-name="BiddingSystem" enabled="true" use-java-context="true"> -->
-<!-- 		<connection-url>jdbc:h2:mem:BiddingSystem;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1 -->
-<!-- 		</connection-url> -->
-<!-- 		<driver>h2</driver> -->
-<!-- 		<security> -->
-<!-- 			<user-name>sa</user-name> -->
-<!-- 			<password>sa</password> -->
-<!-- 		</security> -->
-<!-- 	</datasource> -->
-
+		
 	<datasource jndi-name="java:/MySQLDSS" pool-name="java:/MySQLDSS"
 		enabled="true" use-java-context="true">
 		<connection-url>jdbc:mysql://localhost:3306/biddingSystemDB</connection-url>
