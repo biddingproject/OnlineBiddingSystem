@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -39,6 +40,12 @@ public class Item {
 	
 	@ManyToOne
 	private Customer customer;
+	
+	@DecimalMax(value = "5")
+	private int rating;
+	
+	@Size(max = 180)
+	private String customerReview;
 
 	public Long getId() {
 		return id;
@@ -94,6 +101,22 @@ public class Item {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public String getCustomerReview() {
+		return customerReview;
+	}
+
+	public void setCustomerReview(String customerReview) {
+		this.customerReview = customerReview;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	
 
