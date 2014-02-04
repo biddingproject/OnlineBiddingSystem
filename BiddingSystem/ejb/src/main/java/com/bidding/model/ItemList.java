@@ -1,6 +1,7 @@
 package com.bidding.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,7 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="item_list")
@@ -31,6 +33,12 @@ public class ItemList {
 	
 	@Column(name = "base_bid")
 	private Float baseBid;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date bidStartTimeStamp;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date expireTimeStamp;
 	
 	@Column(name = "buy_it_now_price")
 	private Float buyItNowPrice;
@@ -95,6 +103,22 @@ public class ItemList {
 
 	public void setBidList(List<Bid> bidList) {
 		this.bidList = bidList;
+	}
+
+	public Date getExpireTimeStamp() {
+		return expireTimeStamp;
+	}
+
+	public void setExpireTimeStamp(Date expireTimeStamp) {
+		this.expireTimeStamp = expireTimeStamp;
+	}
+
+	public Date getBidStartTimeStamp() {
+		return bidStartTimeStamp;
+	}
+
+	public void setBidStartTimeStamp(Date bidStartTimeStamp) {
+		this.bidStartTimeStamp = bidStartTimeStamp;
 	}
 
 }

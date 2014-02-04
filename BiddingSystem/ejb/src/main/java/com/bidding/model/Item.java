@@ -1,7 +1,5 @@
 package com.bidding.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,9 +32,6 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name="item_list_id")
 	private ItemList itemList;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date expireTimeStamp;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
@@ -72,14 +65,6 @@ public class Item {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Date getExpireTimeStamp() {
-		return expireTimeStamp;
-	}
-
-	public void setExpireTimeStamp(Date expireTimeStamp) {
-		this.expireTimeStamp = expireTimeStamp;
 	}
 
 	public Float getPriceBought() {
