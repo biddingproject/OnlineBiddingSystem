@@ -1,5 +1,6 @@
 package com.bidding.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,13 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="item_list")
-public class ItemList {
+public class ItemList implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

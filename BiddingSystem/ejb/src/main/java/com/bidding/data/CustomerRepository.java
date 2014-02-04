@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import com.bidding.model.Customer;
 
+
 @ApplicationScoped
 public class CustomerRepository {
 	
