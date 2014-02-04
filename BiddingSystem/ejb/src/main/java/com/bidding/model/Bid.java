@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,9 +16,11 @@ public class Bid {
 	private Long id;
 	
 	@ManyToOne
+	@JoinColumn(name="item_list_id")
 	private ItemList itemList;
 	
 	@ManyToOne
+	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
 	@Column(nullable = false, columnDefinition = "TINYINT(1)")

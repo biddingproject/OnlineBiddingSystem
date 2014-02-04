@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
@@ -15,6 +17,10 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@OneToMany(mappedBy="customer")
 	private List<Item> boughtItems = new ArrayList<Item>();
@@ -44,6 +50,14 @@ public class Customer {
 
 	public void setBidList(List<Bid> bidList) {
 		this.bidList = bidList;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

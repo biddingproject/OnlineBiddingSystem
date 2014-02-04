@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,12 +34,14 @@ public class Item {
 	private String description;
 	
 	@ManyToOne
+	@JoinColumn(name="item_list_id")
 	private ItemList itemList;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expireTimeStamp;
 	
 	@ManyToOne
+	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
 	@DecimalMax(value = "5")
