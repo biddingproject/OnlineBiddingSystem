@@ -1,4 +1,8 @@
 *.class
 *.iml
 *.jar
-user-management/.idea/*
+userManagement/.idea/*
+userManagement/ejb/target/*
+userManagement/ear/target/*
+userManagement/web/target/*
+
