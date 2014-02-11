@@ -1,12 +1,12 @@
 package com.bidding.data;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.bidding.model.ItemList;
 
-@ApplicationScoped
+@Stateless
 public class ItemListRepository {
 	
 	@Inject

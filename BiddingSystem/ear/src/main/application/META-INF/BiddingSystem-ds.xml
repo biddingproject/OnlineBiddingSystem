@@ -24,7 +24,7 @@
 		<driver>mysqlDriver</driver>
 		<security>
 			<user-name>root</user-name>
-			<password>1234</password>
+			<password>pass</password>
 		</security>
 	</datasource>
 

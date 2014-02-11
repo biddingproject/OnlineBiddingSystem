@@ -2,11 +2,14 @@ package com.bidding.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,6 +18,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User implements Serializable{
 	
 	/**
@@ -26,10 +30,10 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@OneToOne(mappedBy="user")
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private Seller seller;
 	
-	@OneToOne(mappedBy="user")
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private Customer customer;
 	
 	@NotNull
