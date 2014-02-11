@@ -40,6 +40,9 @@ public class User implements Serializable{
 	@Size(min = 4, max = 50)
 	private String name;
 	
+	@Size(min = 4, max = 50)
+	private String userName;
+	
 	@NotNull
 	@Size(min = 4, max = 250)
 	private String address;
@@ -95,6 +98,12 @@ public class User implements Serializable{
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }
