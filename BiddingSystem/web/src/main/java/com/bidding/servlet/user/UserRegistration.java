@@ -1,4 +1,4 @@
-package com.bidding.servlet;
+package com.bidding.servlet.user;
 
 import javax.servlet.annotation.WebServlet;
 
