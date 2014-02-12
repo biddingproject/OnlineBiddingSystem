@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/aop 
+	    http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.bidding.controller" />
+
+<!-- 	<bean id="multipartResolver" -->
+<!-- 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
+<!-- 		<property name="maxUploadSize" value="${maxFileUpload.size}" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<aop:aspectj-autoproxy /> -->
+<!-- 	<bean id="dbMethodCallLogger" class="com.thinkcube.aspect.DbMethodCallLogger" /> -->
+<!-- 	<bean id="resourceCleaner" class="com.thinkcube.aspect.ResourceCleaner" /> -->
+
+<!-- 	<sec:global-method-security -->
+<!-- 		pre-post-annotations="enabled" /> -->
+
+<!-- 	<bean id="properties" -->
+<!-- 		class="org.springframework.beans.factory.config.PropertiesFactoryBean"> -->
+<!-- 		<property name="locations"> -->
+<!-- 			<list> -->
+<!-- 				<value>vc.dbconfig.properties</value> -->
+<!-- 				<value>vc.filePath.properties</value> -->
+<!-- 				<value>vc.common.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="params" class="com.thinkcube.util.Params"/> -->
+
+<!-- 	<context:property-placeholder -->
+<!-- 		properties-ref="properties" /> -->
+
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" /> -->
+
+<!--     login service beans -->
+<!--     <bean id="defaultLogin" class="com.thinkcube.service.login.DefaultLoginService"/> -->
+<!--     <bean id="tcLogin" class="com.thinkcube.service.login.TCLoginService"/> -->
+<!--     <bean id="gson" class="com.google.gson.Gson"/> -->
+
+<!-- 	<mvc:resources mapping="/resources/**" location="/resources/" /> -->
+<!-- 	<mvc:resources mapping="/uploads/**" location="file:${uploads.path}/" /> -->
+</beans>

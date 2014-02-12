@@ -50,7 +50,7 @@ public class ItemList implements Serializable{
 	private Float buyItNowPrice;
 	
 	@OneToMany(mappedBy="itemList")
-	private List<Item> itemList = new ArrayList<Item>();
+	private List<Item> soldItems = new ArrayList<Item>();
 	
 	@OneToMany(mappedBy="itemList")
 	private List<Bid> bidList = new ArrayList<Bid>();
@@ -95,14 +95,6 @@ public class ItemList implements Serializable{
 		this.buyItNowPrice = buyItNowPrice;
 	}
 
-	public List<Item> getItemList() {
-		return itemList;
-	}
-
-	public void setItemList(List<Item> itemList) {
-		this.itemList = itemList;
-	}
-
 	public List<Bid> getBidList() {
 		return bidList;
 	}
@@ -125,6 +117,14 @@ public class ItemList implements Serializable{
 
 	public void setBidStartTimeStamp(Date bidStartTimeStamp) {
 		this.bidStartTimeStamp = bidStartTimeStamp;
+	}
+
+	public List<Item> getSoldItems() {
+		return soldItems;
+	}
+
+	public void setSoldItems(List<Item> soldItems) {
+		this.soldItems = soldItems;
 	}
 
 }

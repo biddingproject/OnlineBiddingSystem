@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(/*uniqueConstraints = @UniqueConstraint(columnNames = "email")*/)
 public class User implements Serializable{
 	
 	/**
@@ -30,10 +30,10 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="user", cascade={CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
 	private Seller seller;
 	
-	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="user", cascade={CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
 	private Customer customer;
 	
 	@NotNull
