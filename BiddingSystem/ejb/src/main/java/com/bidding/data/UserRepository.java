@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import com.bidding.model.Customer;
 import com.bidding.model.User;
 
 import java.util.List;
@@ -55,5 +56,15 @@ public class UserRepository {
     public void saveUser(User user){
     	em.persist(user);
     }
+
+	public void remove(User user) {
+		user = em.find(User.class, user.getId());
+		Customer cutomer = user.getCustomer();
+		cutomer.setUser(null);
+		user.setCustomer(null);
+		em.remove(cutomer);
+		em.remove(user);
+		
+	}
 
 }

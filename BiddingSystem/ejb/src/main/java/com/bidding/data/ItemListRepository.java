@@ -1,10 +1,11 @@
 package com.bidding.data;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import com.bidding.model.ItemList;
 
@@ -22,8 +23,16 @@ public class ItemListRepository {
 		em.persist(itemList);
 	}
 	
-	public List<ItemList> findItemListBySeller(){
-		return null;
+	public ItemList findItemListBySeller(Long id){
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<ItemList> criteria = cb.createQuery(ItemList.class);
+        Root<ItemList> itemList = criteria.from(ItemList.class);
+        criteria.select(itemList).where(cb.equal(itemList.get("seller.id"), id));
+        return em.createQuery(criteria).getSingleResult();
+	}
+	
+	public void deleteItemList(ItemList itemList){
+		em.remove(em.contains(itemList)? itemList : em.merge(itemList));
 	}
 
 }

@@ -38,8 +38,10 @@ public class TestServlet extends HttpServlet {
 		customer.setUser(user);
 		user.setCustomer(customer);
 		
-		
 		userRepository.saveUser(user);
+		User user1 = new User();
+		user1.setId(1L);
+		userRepository.remove(user1);
 		
 		System.out.println("get request");
 		response.sendRedirect("test.jsp");
