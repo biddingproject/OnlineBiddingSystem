@@ -42,21 +42,28 @@ public class User implements Serializable{
 	
 	@Size(min = 4, max = 50)
 	private String userName;
-	
+
+    @NotNull
+    private String password;
+
 	@NotNull
 	@Size(min = 4, max = 250)
 	private String address;
-	
+
 	@NotNull
     @NotEmpty
     @Email
 	private String email;
-	
+
 	@NotNull
 	@Size(min = 8, max = 12)
 	@Digits(fraction = 0, integer = 12)
 	private String phoneNumber;
-	
+
+    private String firstName;
+
+    private String lastName;
+
 	public Long getId() {
 		return id;
 	}
@@ -106,4 +113,27 @@ public class User implements Serializable{
 		this.userName = userName;
 	}
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
