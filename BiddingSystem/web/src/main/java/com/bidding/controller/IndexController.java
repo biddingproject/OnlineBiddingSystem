@@ -1,5 +1,7 @@
 package com.bidding.controller;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.inject.Inject;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bidding.data.UserRepository;
 import com.bidding.model.Customer;
 import com.bidding.model.User;
+import com.bidding.model.UserRole;
 
 @Controller
 class IndexController {
@@ -27,6 +30,14 @@ class IndexController {
 		user.setEmail("abc@abc.com");
 		user.setName("lahiru");
 		user.setPhoneNumber("888888888888");
+		user.setPassword("aaaaaa");
+		user.setEnabled(true);
+		UserRole ur = new UserRole();
+		ur.setRoleId(1);
+		ur.setRoleName("abc");
+		ur.setUser(user);
+		List<UserRole> roles = user.getUserRoles();
+		user.setUserRoles(roles);
 		
 		Customer customer= new Customer();
 		customer.setUser(user);
