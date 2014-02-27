@@ -1,6 +1,11 @@
 package com.bidding.controller;
 
 import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +20,7 @@ public class LoginController {
 		String name = principal.getName();
 		model.addAttribute("username", name);
 		model.addAttribute("message", "Spring Security Custom Form example");
-		return "hello";
+		return "loginSuccess";
  
 	}
  
@@ -33,10 +38,21 @@ public class LoginController {
 		return "login";
  
 	}
- 
+	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {
  
+		return "login";
+ 
+	}
+ 
+	@RequestMapping(value="/signout", method = RequestMethod.GET)
+	public String logout(ModelMap model,HttpServletRequest request) {
+		SecurityContextHolder.clearContext();
+		HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
 		return "login";
  
 	}

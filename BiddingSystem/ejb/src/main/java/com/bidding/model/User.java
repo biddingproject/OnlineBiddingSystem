@@ -43,7 +43,6 @@ public class User implements Serializable{
 	@Size(min = 4, max = 50)
 	private String userName;
 
-    @NotNull
     private String password;
 
 	@NotNull
