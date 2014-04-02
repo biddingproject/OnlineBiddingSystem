@@ -3,7 +3,6 @@ package com.bidding.controller;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,7 +27,6 @@ class IndexController {
 		User user = new User();
 		user.setAddress("aa lsadj slkdfjlskdj flskdjfl skdlkfj ");
 		user.setEmail("abc@abc.com");
-		user.setName("lahiru");
 		user.setPhoneNumber("888888888888");
 		user.setPassword("aaaaaa");
 		user.setEnabled(true);

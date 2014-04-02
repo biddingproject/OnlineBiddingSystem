@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -38,16 +37,12 @@ public class User implements Serializable{
 	
 	@OneToOne(mappedBy="user", cascade={CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
 	private Customer customer;
-	
-	@NotNull
-	@Size(min = 4, max = 50)
-	private String name;
 
 	@NotNull
-	@Size(min = 4, max = 50)
+	@Size(min = 4, max = 512)
     private String password;
     
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", cascade={CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
     private List<UserRole> userRoles = new ArrayList<UserRole>();
 
 	@NotNull
@@ -62,12 +57,12 @@ public class User implements Serializable{
 	private String email;
 
 	@NotNull
-	@Size(min = 8, max = 12)
-	@Digits(fraction = 0, integer = 12)
 	private String phoneNumber;
 
+	@NotNull
     private String firstName;
 
+	@NotNull
     private String lastName;
 
 	public Long getId() {
@@ -88,12 +83,7 @@ public class User implements Serializable{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public String getAddress() {
 		return address;
 	}

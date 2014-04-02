@@ -10,7 +10,9 @@ import javax.persistence.criteria.Root;
 
 import com.bidding.model.Customer;
 import com.bidding.model.User;
+import com.bidding.model.UserRole;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Stateless
@@ -53,8 +55,21 @@ public class UserRepository {
         return users;
     }
 
-    public void saveUser(User user){
-    	em.persist(user);
+    public boolean saveUser(User user){
+    	List<UserRole> roles = user.getUserRoles();
+    	for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
+			UserRole userRole = (UserRole) iterator.next();
+			userRole.setUser(user);
+		}
+    	user.setUserRoles(user.getUserRoles());
+    	try {
+    		em.persist(user);
+    		return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+    	
     }
 
 	public void remove(User user) {

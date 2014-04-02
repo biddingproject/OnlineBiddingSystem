@@ -31,7 +31,6 @@ public class TestServlet extends HttpServlet {
 		User user = new User();
 		user.setAddress("aa lsadj slkdfjlskdj flskdjfl skdlkfj ");
 		user.setEmail("abc@abc.com");
-		user.setName("lahiru");
 		user.setPhoneNumber("888888888888");
 		
 		Customer customer= new Customer();

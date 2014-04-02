@@ -36,7 +36,6 @@ public class UserRole implements Serializable {
     @JoinColumn(name="user_id")
     private User user;
 
-
     public long getRoleId() {
         return roleId;
     }
