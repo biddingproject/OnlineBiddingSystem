@@ -24,25 +24,30 @@ class IndexController {
     @RequestMapping(value = "/tester", method = RequestMethod.GET)
     public String showIndex(ModelMap model) {
     	
-		User user = new User();
-		user.setAddress("aa lsadj slkdfjlskdj flskdjfl skdlkfj ");
-		user.setEmail("abc@abc.com");
-		user.setPhoneNumber("888888888888");
-		user.setPassword("aaaaaa");
-		user.setEnabled(true);
-		UserRole ur = new UserRole();
-		ur.setRoleId(1);
-		ur.setRoleName("abc");
-		ur.setUser(user);
-		List<UserRole> roles = user.getUserRoles();
-		user.setUserRoles(roles);
-		
-		Customer customer= new Customer();
-		customer.setUser(user);
-		user.setCustomer(customer);
-		
-		userRepository.saveUser(user);
+//		User user = new User();
+//		user.setAddress("aa lsadj slkdfjlskdj flskdjfl skdlkfj ");
+//		user.setEmail("abc@abc.com");
+//		user.setPhoneNumber("888888888888");
+//		user.setPassword("aaaaaa");
+//		user.setEnabled(true);
+//		UserRole ur = new UserRole();
+//		ur.setRoleId(1);
+//		ur.setRoleName("abc");
+//		ur.setUser(user);
+//		List<UserRole> roles = user.getUserRoles();
+//		user.setUserRoles(roles);
+//		
+//		Customer customer= new Customer();
+//		customer.setUser(user);
+//		user.setCustomer(customer);
+//		
+//		userRepository.saveUser(user);
         return "test";
+    }
+    
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String displayIndex(ModelMap model) {
+        return "index";
     }
 
 }
