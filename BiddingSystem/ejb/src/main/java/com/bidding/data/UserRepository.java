@@ -56,6 +56,7 @@ public class UserRepository {
     }
 
     public boolean saveUser(User user){
+    	
     	List<UserRole> roles = user.getUserRoles();
     	for (Iterator iterator = roles.iterator(); iterator.hasNext();) {
 			UserRole userRole = (UserRole) iterator.next();

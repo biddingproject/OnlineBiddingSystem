@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bidding.model.User;
 import com.bidding.model.UserRole;
@@ -50,17 +51,22 @@ public class UserRegistration {
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String RegisterUser(@ModelAttribute("user") User user,
-			BindingResult result, ModelMap model) {
+	public String RegisterUser(
+			@ModelAttribute("user") User user,
+			BindingResult result,
+			ModelMap model,
+			@RequestParam(value = "isSeller", required = false) boolean isSeller,
+			@RequestParam(value = "isCustomer", required = false) boolean isCustomer) {
 
 		if (result.hasErrors()) {
 			System.out.println("binding result has errors");
 		} else {
+
 			String encodedPass = shaPasswordEncoder.encodePassword(
 					user.getPassword(), null);
 			user.setPassword(encodedPass);
-			System.out.println("user name is  "
-					+ userRegistration.registerUser(user));
+			userRegistration.registerUser(user,isSeller,isCustomer);
+			return "registrationSuccess";
 		}
 		return "register";
 	}
