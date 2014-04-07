@@ -54,9 +54,7 @@ public class UserRegistration {
 	public String RegisterUser(
 			@ModelAttribute("user") User user,
 			BindingResult result,
-			ModelMap model,
-			@RequestParam(value = "isSeller", required = false) boolean isSeller,
-			@RequestParam(value = "isCustomer", required = false) boolean isCustomer) {
+			ModelMap model) {
 
 		if (result.hasErrors()) {
 			System.out.println("binding result has errors");
@@ -65,7 +63,7 @@ public class UserRegistration {
 			String encodedPass = shaPasswordEncoder.encodePassword(
 					user.getPassword(), null);
 			user.setPassword(encodedPass);
-			userRegistration.registerUser(user,isSeller,isCustomer);
+			userRegistration.registerUser(user);
 			return "registrationSuccess";
 		}
 		return "register";

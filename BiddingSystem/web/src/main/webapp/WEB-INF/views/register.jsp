@@ -34,12 +34,7 @@
 				<form:input type="text" id="phoneNumber" placeholder="phoneNumber"
 					path="phoneNumber" required="required" pattern=".{10,12}" />
 			</div>
-			
-			<div>
-				<input type="checkbox" name="isSeller">register as seller<br>
-				<input type="checkbox" name="isCustomer" checked="checked">register as customer
-			</div>
-			
+
 			<input type="submit" value="Register">
 		</fieldset>
 	</form:form>
