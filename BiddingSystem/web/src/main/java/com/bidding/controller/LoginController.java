@@ -1,10 +1,10 @@
 package com.bidding.controller;
 
-import java.security.Principal;
-
+import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,22 +12,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.apache.log4j.Logger;
-
 @Controller
 public class LoginController {
 
+	@EJB(mappedName = "java:app/BiddingSystem-ejb/User")
+	com.bidding.service.User user;
+
 	static Logger log = Logger.getLogger(LoginController.class.getName());
-
-	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
-	public String printWelcome(ModelMap model, Principal principal) {
-		log.info("Going to create HelloWord Obj");
-		String name = principal.getName();
-		model.addAttribute("username", name);
-		model.addAttribute("message", "Spring Security Custom Form example");
-		return "loginSuccess";
-
-	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
@@ -60,9 +51,13 @@ public class LoginController {
 
 	}
 
-	@PreAuthorize("hasRole('ROLE_CUSTOMER')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String loadDashboard(ModelMap model) {
+		String email = SecurityContextHolder.getContext().getAuthentication()
+				.getName();
+		System.out.println(email);
+		model.addAttribute("user", user.getUserByEmail(email));
 		return "/profile/dashboard";
 	}
 

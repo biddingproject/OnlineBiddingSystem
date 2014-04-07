@@ -42,6 +42,7 @@ public class UserRepository {
         Root<User> getUser = criteriaQuery.from(User.class);
         criteriaQuery.select(getUser).where(criteriaBuilder.equal(getUser.get("email"), email));
         user = em.createQuery(criteriaQuery).getSingleResult();
+        System.out.println("user name is "+ user.getEmail());
         return user;
     }
 
