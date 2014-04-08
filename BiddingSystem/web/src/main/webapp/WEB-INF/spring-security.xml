@@ -11,7 +11,7 @@
 			authentication-failure-url="/loginfailed" />
 		<logout logout-success-url="/logout" />
 	</http>
-
+	<global-method-security pre-post-annotations="enabled" />
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder ref="shaPasswordEncoder" />

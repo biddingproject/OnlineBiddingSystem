@@ -42,7 +42,7 @@ public class ItemList implements Serializable {
 
 	@Column(name = "base_bid")
 	private Float baseBid;
-	
+
 	@OneToOne
 	private ItemCategory itemCategory;
 

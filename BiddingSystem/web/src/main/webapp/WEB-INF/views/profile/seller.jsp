@@ -21,7 +21,7 @@
 			</div>
 
 			<div>
-				<form:label path="baseBid" for="baseBid">Base Bid Name</form:label>
+				<form:label path="baseBid" for="baseBid">Base Bid</form:label>
 				<form:input type="text" path="baseBid" placeholder="starting bid"
 					required="required" />
 			</div>
@@ -31,27 +31,23 @@
 					placeholder="buy it now price" required="required" />
 			</div>
 			<div>
-				<form:label path="email" for="email">email</form:label>
-				<form:input type="email" id="email" path="email"
-					placeholder="email address" required="required" />
+				<form:label path="description" for="description">description</form:label>
+				<form:input type="text" id="description" path="description"
+					placeholder="description" required="required" />
 			</div>
 			<div>
-				<form:label path="address" for="address">Address</form:label>
-				<form:input type="text" id="address" path="address"
-					placeholder="address" required="required" />
+				<form:label path="bidStartTimeStamp" for="bidStartTimeStamp">bid start time</form:label>
+				<form:input type="text" id="bidStartTimeStamp"
+					path="bidStartTimeStamp" placeholder="bid start time"
+					required="required" />
 			</div>
 			<div>
-				<form:label path="password" for="password"> Password</form:label>
-				<form:input type="password" id="password" placeholder="password"
-					path="password" value="" required="required" pattern=".{5,50}" />
-			</div>
-			<div>
-				<form:label path="phoneNumber" for="phoneNumber">Phone Number</form:label>
-				<form:input type="text" id="phoneNumber" placeholder="phoneNumber"
-					path="phoneNumber" required="required" pattern=".{10,12}" />
+				<form:label path="expireTimeStamp" for="expireTimeStamp">bid end time</form:label>
+				<form:input type="text" id="expireTimeStamp" path="expireTimeStamp"
+					placeholder="bid end time" required="required" />
 			</div>
 
-			<input type="submit" value="Register">
+			<input type="submit" value="save item list">
 		</fieldset>
 	</form:form>
 

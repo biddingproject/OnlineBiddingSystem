@@ -12,6 +12,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bidding.model.ItemList;
+
 @Controller
 public class LoginController {
 
@@ -70,6 +72,7 @@ public class LoginController {
 	@PreAuthorize("hasRole('ROLE_SELLER')")
 	@RequestMapping(value = "/seller", method = RequestMethod.GET)
 	public String loadSellerProfile(ModelMap model) {
+		model.put("itemList", new ItemList());
 		return "/profile/seller";
 	}
 
