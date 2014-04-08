@@ -1,7 +1,5 @@
 package com.bidding.controller;
 
-import java.util.ArrayList;
-
 import javax.ejb.EJB;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bidding.model.User;
-import com.bidding.model.UserRole;
 
 /**
  * user registration/deregister actions
@@ -51,10 +47,8 @@ public class UserRegistration {
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String RegisterUser(
-			@ModelAttribute("user") User user,
-			BindingResult result,
-			ModelMap model) {
+	public String RegisterUser(@ModelAttribute("user") User user,
+			BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			System.out.println("binding result has errors");

@@ -8,7 +8,7 @@
 <body>
 	<a href="<%=request.getContextPath()%>/seller">seller area</a>
 	<a href="<%=request.getContextPath()%>/customer">customer area</a>
-	<a href="<%=request.getContextPath()%>/admin">admin area</a> 
+	<a href="<%=request.getContextPath()%>/admin">admin area</a>
 	
 	profile	picture <br/>
 	first name: ${user.firstName} <br/> 
