@@ -25,10 +25,6 @@ public class Item implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@NotNull
-	@Size(min = 3, max = 50)
-	private String name;
-	
 	@Column(name = "price_bought")
 	private Float priceBought;
 	
@@ -56,14 +52,6 @@ public class Item implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getDescription() {

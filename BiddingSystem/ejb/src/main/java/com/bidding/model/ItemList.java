@@ -13,46 +13,60 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="item_list")
-public class ItemList implements Serializable{
-	
+@Table(name = "item_list")
+public class ItemList implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="seller_id")
+	@JoinColumn(name = "seller_id")
 	private Seller seller;
-	
+
 	@Column(name = "current_bid")
 	private Float currentBid;
-	
+
 	@Column(name = "base_bid")
 	private Float baseBid;
 	
+	@OneToOne
+	private ItemCategory itemCategory;
+
+	@NotNull
+	@Size(min = 3, max = 50)
+	private String name;
+
+	@Size(min = 10, max = 1000)
+	@NotNull
+	private String description;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bidStartTimeStamp;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expireTimeStamp;
-	
+
 	@Column(name = "buy_it_now_price")
 	private Float buyItNowPrice;
-	
-	@OneToMany(mappedBy="itemList")
+
+	@OneToMany(mappedBy = "itemList")
 	private List<Item> soldItems = new ArrayList<Item>();
-	
-	@OneToMany(mappedBy="itemList")
+
+	@OneToMany(mappedBy = "itemList")
 	private List<Bid> bidList = new ArrayList<Bid>();
 
 	public Long getId() {
@@ -125,6 +139,30 @@ public class ItemList implements Serializable{
 
 	public void setSoldItems(List<Item> soldItems) {
 		this.soldItems = soldItems;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ItemCategory getItemCategory() {
+		return itemCategory;
+	}
+
+	public void setItemCategory(ItemCategory itemCategory) {
+		this.itemCategory = itemCategory;
 	}
 
 }

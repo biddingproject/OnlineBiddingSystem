@@ -13,25 +13,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Customer implements Serializable{
-	
+public class Customer implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@OneToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@OneToMany(mappedBy="customer")
+
+	@JoinColumn(name = "number_of_black_marks")
+	private int numberOfBlackMarks = 0;
+
+	@OneToMany(mappedBy = "customer")
 	private List<Item> boughtItems = new ArrayList<Item>();
-	
-	@OneToMany(mappedBy="customer")
+
+	@OneToMany(mappedBy = "customer")
 	private List<Bid> bidList = new ArrayList<Bid>();
 
 	public Long getId() {
@@ -64,6 +67,14 @@ public class Customer implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getNumberOfBlackMarks() {
+		return numberOfBlackMarks;
+	}
+
+	public void setNumberOfBlackMarks(int numberOfBlackMarks) {
+		this.numberOfBlackMarks = numberOfBlackMarks;
 	}
 
 }
