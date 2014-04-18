@@ -35,17 +35,17 @@
 				<form:input type="text" id="description" path="description"
 					placeholder="description" required="required" />
 			</div>
-			<div>
-				<form:label path="bidStartTimeStamp" for="bidStartTimeStamp">bid start time</form:label>
-				<form:input type="text" id="bidStartTimeStamp"
-					path="bidStartTimeStamp" placeholder="bid start time"
-					required="required" />
-			</div>
-			<div>
-				<form:label path="expireTimeStamp" for="expireTimeStamp">bid end time</form:label>
-				<form:input type="text" id="expireTimeStamp" path="expireTimeStamp"
-					placeholder="bid end time" required="required" />
-			</div>
+<!-- 			<div> -->
+<%-- 				<form:label path="bidStartTimeStamp" for="bidStartTimeStamp">bid start time</form:label> --%>
+<%-- 				<form:input type="text" id="bidStartTimeStamp" --%>
+<%-- 					path="bidStartTimeStamp" placeholder="bid start time" --%>
+<%-- 					required="required" /> --%>
+<!-- 			</div> -->
+<!-- 			<div> -->
+<%-- 				<form:label path="expireTimeStamp" for="expireTimeStamp">bid end time</form:label> --%>
+<%-- 				<form:input type="text" id="expireTimeStamp" path="expireTimeStamp" --%>
+<%-- 					placeholder="bid end time" required="required" /> --%>
+<!-- 			</div> -->
 
 			<input type="submit" value="save item list">
 		</fieldset>

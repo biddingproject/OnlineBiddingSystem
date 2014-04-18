@@ -14,5 +14,9 @@ public class User {
 	public com.bidding.model.User getUserByEmail(String email){
 		return userRepository.getUserByEmail(email);
 	}
+
+	public com.bidding.model.User getUserById(Long id) {
+		return userRepository.findById(id);
+	}
 	
 }

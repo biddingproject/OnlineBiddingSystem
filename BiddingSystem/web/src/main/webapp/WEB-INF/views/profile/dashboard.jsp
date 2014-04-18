@@ -16,6 +16,7 @@
 	phone number : ${user.phoneNumber} <br/> 
 	address : ${user.address} <br/>
 	email :	${user.email} <br/>
+	profile : <img src="<%=request.getContextPath()%>/getUserImage/${user.id}" />
 
 </body>
 </html>
