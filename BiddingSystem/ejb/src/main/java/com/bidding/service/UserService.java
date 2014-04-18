@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import com.bidding.data.UserRepository;
 
 @Stateless
-public class User {
+public class UserService {
 	
 	@Inject
 	UserRepository userRepository;
@@ -17,6 +17,12 @@ public class User {
 
 	public com.bidding.model.User getUserById(Long id) {
 		return userRepository.findById(id);
+	}
+
+
+	public void updateProfilePicture(byte[] imageBytes, String email) {
+		userRepository.updateProfilePicture(imageBytes,email);
+		
 	}
 	
 }

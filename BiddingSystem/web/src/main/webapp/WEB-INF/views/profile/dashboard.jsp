@@ -17,6 +17,15 @@
 	address : ${user.address} <br/>
 	email :	${user.email} <br/>
 	profile : <img src="<%=request.getContextPath()%>/getUserImage/${user.id}" />
+	
+	<hr />
+	
+	<h3>Change profile pic</h3>
+	<form action="changeProfilePic" method="post" enctype="multipart/form-data">
+		<label for="image">New profile pic : </label>
+		<input name="image" type="file"/><br/>
+		<input value="submit" type="submit"/>
+	</form>
 
 </body>
 </html>

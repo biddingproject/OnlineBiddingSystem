@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bidding.model.ItemList;
+import com.bidding.service.UserService;
 
 @Controller
 public class LoginController {
 
-	@EJB(mappedName = "java:app/BiddingSystem-ejb/User")
-	com.bidding.service.User user;
+	@EJB(mappedName = "java:app/BiddingSystem-ejb/UserService")
+	UserService userService;
 
 	static Logger log = Logger.getLogger(LoginController.class.getName());
 
@@ -88,7 +89,7 @@ public class LoginController {
 	public String loadDashboard(ModelMap model) {
 		String email = SecurityContextHolder.getContext().getAuthentication()
 				.getName();
-		model.addAttribute("user", user.getUserByEmail(email));
+		model.addAttribute("user", userService.getUserByEmail(email));
 		return "/profile/dashboard";
 	}
 
@@ -135,7 +136,7 @@ public class LoginController {
 	@RequestMapping(value = "/getUserImage/{id}")
 	public void getUserImage(HttpServletResponse response,
 			@PathVariable("id") Long id) throws IOException {
-		byte[] buffer = user.getUserById(id).getProfilePicture();
+		byte[] buffer = userService.getUserById(id).getProfilePicture();
 
 		try {
 			response.getOutputStream().write(buffer);

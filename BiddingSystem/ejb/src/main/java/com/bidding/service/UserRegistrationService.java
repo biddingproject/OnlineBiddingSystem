@@ -13,7 +13,7 @@ import com.bidding.model.UserRole;
 import com.bidding.util.StringConstants;
 
 @Stateless
-public class UserRegistration {
+public class UserRegistrationService {
 
 	@Inject
 	UserRepository userRepository;
