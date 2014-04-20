@@ -54,7 +54,7 @@ public class User implements Serializable {
 	private String address;
 
 	@Lob
-	@Column(name = "profile_picture", nullable = false, columnDefinition = "mediumblob")
+	@Column(name = "profile_picture", columnDefinition = "mediumblob")
 	private byte[] profilePicture;
 
 	private boolean enabled;

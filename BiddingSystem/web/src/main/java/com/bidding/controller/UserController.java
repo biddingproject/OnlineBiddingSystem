@@ -74,7 +74,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
-	public String addPersonFromForm(
+	public String changeProfilePic(
 			@RequestParam(value = "image", required = false) MultipartFile image) {
 
 		if (!image.isEmpty()) {

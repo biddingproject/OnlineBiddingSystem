@@ -9,9 +9,11 @@
 <body>
 	<a href="<%=request.getContextPath()%>/dashboard">dashboard</a> seller
 	profile
+	<hr />
 
 	<form:form method="post" action="createItemList"
 		modelAttribute="itemList">
+		<h3>Create Item List</h3>
 		<fieldset>
 
 			<div>
@@ -35,19 +37,19 @@
 				<form:input type="text" id="description" path="description"
 					placeholder="description" required="required" />
 			</div>
-<!-- 			<div> -->
-<%-- 				<form:label path="bidStartTimeStamp" for="bidStartTimeStamp">bid start time</form:label> --%>
-<%-- 				<form:input type="text" id="bidStartTimeStamp" --%>
-<%-- 					path="bidStartTimeStamp" placeholder="bid start time" --%>
-<%-- 					required="required" /> --%>
-<!-- 			</div> -->
-<!-- 			<div> -->
-<%-- 				<form:label path="expireTimeStamp" for="expireTimeStamp">bid end time</form:label> --%>
-<%-- 				<form:input type="text" id="expireTimeStamp" path="expireTimeStamp" --%>
-<%-- 					placeholder="bid end time" required="required" /> --%>
-<!-- 			</div> -->
+			<!-- 			<div> -->
+			<%-- 				<form:label path="bidStartTimeStamp" for="bidStartTimeStamp">bid start time</form:label> --%>
+			<%-- 				<form:input type="text" id="bidStartTimeStamp" --%>
+			<%-- 					path="bidStartTimeStamp" placeholder="bid start time" --%>
+			<%-- 					required="required" /> --%>
+			<!-- 			</div> -->
+			<!-- 			<div> -->
+			<%-- 				<form:label path="expireTimeStamp" for="expireTimeStamp">bid end time</form:label> --%>
+			<%-- 				<form:input type="text" id="expireTimeStamp" path="expireTimeStamp" --%>
+			<%-- 					placeholder="bid end time" required="required" /> --%>
+			<!-- 			</div> -->
 
-			<input type="submit" value="save item list">
+			<input type="submit" value="create item list">
 		</fieldset>
 	</form:form>
 

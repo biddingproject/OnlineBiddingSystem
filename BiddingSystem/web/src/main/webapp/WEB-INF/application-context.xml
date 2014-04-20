@@ -53,7 +53,7 @@
 <!--     <bean id="tcLogin" class="com.thinkcube.service.login.TCLoginService"/> -->
 <!--     <bean id="gson" class="com.google.gson.Gson"/> -->
 
-<!-- 	<mvc:resources mapping="/resources/**" location="/resources/" /> -->
+	<mvc:resources mapping="/images/**" location="/resources/images/" />
 <!-- 	<mvc:resources mapping="/uploads/**" location="file:${uploads.path}/" /> -->
  <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
      <constructor-arg value="256"/>

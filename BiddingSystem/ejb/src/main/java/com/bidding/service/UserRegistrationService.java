@@ -28,17 +28,17 @@ public class UserRegistrationService {
 	 */
 	public String registerUser(User user) {
 
-		File file = new File("/home/madhumal/Desktop/Gif-1.gif");
-		byte[] bFile = new byte[(int) file.length()];
-
-		try {
-			FileInputStream fileInputStream = new FileInputStream(file);
-			fileInputStream.read(bFile);
-			fileInputStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		user.setProfilePicture(bFile);
+//		File file = new File("/home/madhumal/Desktop/Gif-1.gif");
+//		byte[] bFile = new byte[(int) file.length()];
+//
+//		try {
+//			FileInputStream fileInputStream = new FileInputStream(file);
+//			fileInputStream.read(bFile);
+//			fileInputStream.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		user.setProfilePicture(bFile);
 		user.setEnabled(true);
 		UserRole role = new UserRole();
 		role.setRoleName(StringConstants.ROLE_USER);
