@@ -90,4 +90,16 @@ public class UserController {
 
 		return "redirect:/dashboard";
 	}
+	
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String changePassword() {
+
+		return "redirect:/dashboard";
+	}
+	
+	@RequestMapping(value = "/editUserInformation", method = RequestMethod.POST)
+	public String editUserInformation() {
+
+		return "redirect:/dashboard";
+	}
 }

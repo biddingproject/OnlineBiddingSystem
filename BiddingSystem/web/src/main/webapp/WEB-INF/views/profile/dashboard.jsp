@@ -35,5 +35,32 @@
 			type="file" /><br /> <input value="submit" type="submit" />
 	</form>
 
+	<hr />
+
+	<h3>Change password</h3>
+	<form action="changePassword" method="post">
+		<label for="oldPassword">Old password : </label> <input
+			name="oldPassword" type="password" /><br /> <label
+			for="newPassword">New password : </label> <input name="newPassword"
+			type="password" /><br /> <label for="confirmPassword">Confirm
+			password : </label> <input name="confirmPassword" type="password" /><br />
+		<input value="submit" type="submit" />
+	</form>
+
+	<hr />
+
+	<h3>Edit your information</h3>
+	<form action="editUserInformation" method="post">
+		<label for="firstName">First Name : </label> <input name="firstName"
+			value="${user.firstName}" type="text" /><br /> <label
+			for="lastName">Last Name : </label> <input name="lastName"
+			value="${user.lastName}" type="text" /><br /> <label
+			for="phoneNumber">Phone Number : </label> <input name="phoneNumber"
+			value="${user.phoneNumber}" type="text" /><br /> <label
+			for="address">Address : </label> <input name="address"
+			value="${user.address}" type="text" /><br /> <input value="submit"
+			type="submit" />
+	</form>
+
 </body>
 </html>
