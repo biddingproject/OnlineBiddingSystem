@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -50,17 +52,37 @@
 	<hr />
 
 	<h3>Edit your information</h3>
-	<form action="editUserInformation" method="post">
-		<label for="firstName">First Name : </label> <input name="firstName"
-			value="${user.firstName}" type="text" /><br /> <label
-			for="lastName">Last Name : </label> <input name="lastName"
-			value="${user.lastName}" type="text" /><br /> <label
-			for="phoneNumber">Phone Number : </label> <input name="phoneNumber"
-			value="${user.phoneNumber}" type="text" /><br /> <label
-			for="address">Address : </label> <input name="address"
-			value="${user.address}" type="text" /><br /> <input value="submit"
-			type="submit" />
-	</form>
+
+	<form:form method="post" action="updateUserInformation"
+		modelAttribute="user">
+		<fieldset>
+			<div>
+				<form:label path="firstName" for="firstName">First Name</form:label>
+				<form:input type="text" path="firstName" placeholder="First name"
+					required="required" pattern=".{3,}" value="${user.firstName}" />
+			</div>
+			<div>
+				<form:label path="lastName" for="lastName">Last Name</form:label>
+				<form:input type="text" path="lastName" placeholder="Last name"
+					required="required" pattern=".{3,}" value="${user.lastName}" />
+			</div>
+
+			<div>
+				<form:label path="address" for="address">Address</form:label>
+				<form:input type="text" id="address" path="address"
+					placeholder="address" required="required" value="${user.address}" />
+			</div>
+
+			<div>
+				<form:label path="phoneNumber" for="phoneNumber">Phone Number</form:label>
+				<form:input type="text" id="phoneNumber" placeholder="phoneNumber"
+					path="phoneNumber" required="required" pattern=".{10,12}"
+					value="${user.phoneNumber}" />
+			</div>
+
+			<input type="submit" value="update">
+		</fieldset>
+	</form:form>
 
 </body>
 </html>

@@ -26,6 +26,11 @@ public class UserRepository {
 		return em.find(User.class, id);
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public User findByEmail(String email) {
 
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -35,6 +40,11 @@ public class UserRepository {
 		return em.createQuery(criteria).getSingleResult();
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public User getUserByEmail(String email) {
 		User user = null;
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -48,6 +58,11 @@ public class UserRepository {
 		return user;
 	}
 
+	/**
+	 * 
+	 * @param firstName
+	 * @return
+	 */
 	public List<User> getUsersByUserName(String firstName) {
 		List<User> users;
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -114,9 +129,27 @@ public class UserRepository {
 		user.setProfilePicture(imageBytes);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param newPassword
+	 */
 	public void changePassword(Long id, String newPassword) {
 		User user = em.find(User.class, id);
 		user.setPassword(newPassword);
+	}
+
+	/**
+	 * 
+	 * @param userTmp
+	 */
+	public void updateUserInformation(User userTmp) {
+		
+		User user = em.find(User.class,userTmp.getId());
+		user.setAddress(userTmp.getAddress());
+		user.setFirstName(userTmp.getFirstName());
+		user.setLastName(userTmp.getLastName());
+		user.setPhoneNumber(userTmp.getPhoneNumber());
 	}
 
 }

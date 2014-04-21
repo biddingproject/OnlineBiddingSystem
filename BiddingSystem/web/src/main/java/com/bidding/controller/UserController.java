@@ -73,6 +73,11 @@ public class UserController {
 		return "register";
 	}
 
+	/**
+	 * 
+	 * @param image
+	 * @return
+	 */
 	@RequestMapping(value = "/changeProfilePic", method = RequestMethod.POST)
 	public String changeProfilePic(
 			@RequestParam(value = "image", required = false) MultipartFile image) {
@@ -91,32 +96,51 @@ public class UserController {
 		return "redirect:/dashboard";
 	}
 
+	/**
+	 * 
+	 * @param oldPassword
+	 * @param newPassword
+	 * @param confirmPassword
+	 * @return
+	 */
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
 	public String changePassword(
 			@RequestParam(value = "oldPassword", required = true) String oldPassword,
 			@RequestParam(value = "newPassword", required = true) String newPassword,
 			@RequestParam(value = "confirmPassword", required = true) String confirmPassword) {
-		
+
 		boolean passwordChanged = false;
-		
+
 		if (newPassword.equals(confirmPassword)) {
-			
-			String email = SecurityContextHolder.getContext().getAuthentication()
-					.getName();
-			
-			String encodedOldPassword = shaPasswordEncoder.encodePassword(oldPassword, null);
-			String encodedNewPassword = shaPasswordEncoder.encodePassword(newPassword, null);
-			
-			System.out.println("encoded password : "+encodedOldPassword);
-			passwordChanged = userService.changePassword(email, encodedOldPassword,
-					encodedNewPassword);
+
+			String email = SecurityContextHolder.getContext()
+					.getAuthentication().getName();
+
+			String encodedOldPassword = shaPasswordEncoder.encodePassword(
+					oldPassword, null);
+			String encodedNewPassword = shaPasswordEncoder.encodePassword(
+					newPassword, null);
+
+			passwordChanged = userService.changePassword(email,
+					encodedOldPassword, encodedNewPassword);
 		}
 		return "redirect:/dashboard";
 	}
 
-	@RequestMapping(value = "/editUserInformation", method = RequestMethod.POST)
-	public String editUserInformation() {
-
+	/**
+	 * 
+	 * @param user
+	 * @param result
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/updateUserInformation", method = RequestMethod.POST)
+	public String updateUserInformation(@ModelAttribute("user") User user,
+			BindingResult result, ModelMap model) {
+		String email = SecurityContextHolder.getContext()
+				.getAuthentication().getName();
+		
+		userService.updateUserInformation(email,user);
 		return "redirect:/dashboard";
 	}
 }

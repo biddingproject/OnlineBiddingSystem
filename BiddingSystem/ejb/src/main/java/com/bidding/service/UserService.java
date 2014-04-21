@@ -42,4 +42,10 @@ public class UserService {
 		return false;
 	}
 
+	public void updateUserInformation(String email, User user) {
+		User userTmp = userRepository.findByEmail(email);
+		user.setId(userTmp.getId());
+		userRepository.updateUserInformation(user);
+	}
+
 }
