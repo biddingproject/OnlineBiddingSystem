@@ -114,4 +114,9 @@ public class UserRepository {
 		user.setProfilePicture(imageBytes);
 	}
 
+	public void changePassword(Long id, String newPassword) {
+		User user = em.find(User.class, id);
+		user.setPassword(newPassword);
+	}
+
 }

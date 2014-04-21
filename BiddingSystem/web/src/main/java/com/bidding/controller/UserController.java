@@ -84,19 +84,36 @@ public class UserController {
 						.getAuthentication().getName();
 				userService.updateProfilePicture(imageBytes, email);
 			} catch (IOException e) {
-				 e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 
 		return "redirect:/dashboard";
 	}
-	
-	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public String changePassword() {
 
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String changePassword(
+			@RequestParam(value = "oldPassword", required = true) String oldPassword,
+			@RequestParam(value = "newPassword", required = true) String newPassword,
+			@RequestParam(value = "confirmPassword", required = true) String confirmPassword) {
+		
+		boolean passwordChanged = false;
+		
+		if (newPassword.equals(confirmPassword)) {
+			
+			String email = SecurityContextHolder.getContext().getAuthentication()
+					.getName();
+			
+			String encodedOldPassword = shaPasswordEncoder.encodePassword(oldPassword, null);
+			String encodedNewPassword = shaPasswordEncoder.encodePassword(newPassword, null);
+			
+			System.out.println("encoded password : "+encodedOldPassword);
+			passwordChanged = userService.changePassword(email, encodedOldPassword,
+					encodedNewPassword);
+		}
 		return "redirect:/dashboard";
 	}
-	
+
 	@RequestMapping(value = "/editUserInformation", method = RequestMethod.POST)
 	public String editUserInformation() {
 
