@@ -8,21 +8,40 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.bidding.model.ItemList;
+import com.bidding.model.Seller;
 
 @Stateless
 public class ItemListRepository {
 
 	@Inject
 	private EntityManager em;
+	
+	@Inject
+	private UserRepository userRepository;
 
 	public ItemList findById(Long id) {
 		return em.find(ItemList.class, id);
 	}
 
-	public void createItemList(ItemList itemList) {
+	/**
+	 * 
+	 * @param itemList
+	 * @param email
+	 */
+	public void createItemList(ItemList itemList, String email) {
+		
+		Seller seller = userRepository.findByEmail(email).getSeller();
+		itemList.setCurrentBid(itemList.getBaseBid());
 		em.persist(itemList);
+		itemList.setSeller(seller);
+		seller.getAuctionedItemLists().add(itemList);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public ItemList findItemListBySeller(Long id) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<ItemList> criteria = cb.createQuery(ItemList.class);
@@ -32,6 +51,10 @@ public class ItemListRepository {
 		return em.createQuery(criteria).getSingleResult();
 	}
 
+	/**
+	 * 
+	 * @param itemList
+	 */
 	public void deleteItemList(ItemList itemList) {
 		em.remove(em.contains(itemList) ? itemList : em.merge(itemList));
 	}

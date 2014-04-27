@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.bidding.model.Customer;
+import com.bidding.model.Seller;
 import com.bidding.model.User;
 import com.bidding.model.UserRole;
 
@@ -89,8 +90,22 @@ public class UserRepository {
 		}
 		user.setUserRoles(user.getUserRoles());
 		try {
+			
+			Seller seller = new Seller();
+			Customer customer = new Customer();
+			
+			em.persist(seller);
+			em.persist(customer);
 			em.persist(user);
+			
+			customer.setUser(user);
+			seller.setUser(user);
+			
+			user.setCustomer(customer);
+			user.setSeller(seller);
+			
 			return true;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

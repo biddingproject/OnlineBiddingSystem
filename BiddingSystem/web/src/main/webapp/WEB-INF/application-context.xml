@@ -58,4 +58,7 @@
  <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
      <constructor-arg value="256"/>
  </bean>
+ <bean id="dateFormatter" class="java.text.SimpleDateFormat">
+      <constructor-arg value="yyyy-MM-dd HH:mm"/>
+   </bean>
 </beans>

@@ -37,6 +37,15 @@
 				<form:input type="text" id="description" path="description"
 					placeholder="description" required="required" />
 			</div>
+			<div>
+				<label for="bidStartTimeStamp">Bid start time</label> <input
+					type="datetime-local" name="bidStartTime">
+			</div>
+			<div>
+				<label for="expireTimeStamp">Bid end time</label> <input
+					type="datetime-local" name="expireTime">
+			</div>
+			<input type="hidden" id="timeOffset" name="timeOffset" value="getTimeOffset();">
 			<!-- 			<div> -->
 			<%-- 				<form:label path="bidStartTimeStamp" for="bidStartTimeStamp">bid start time</form:label> --%>
 			<%-- 				<form:input type="text" id="bidStartTimeStamp" --%>
@@ -52,7 +61,12 @@
 			<input type="submit" value="create item list">
 		</fieldset>
 	</form:form>
-
+	<script type="text/javascript">
+		var dateObj = new Date();
+		var timeOffset = dateObj.getTimezoneOffset();
+		var elem = document.getElementById("timeOffset");
+		elem.value = timeOffset;
+	</script>
 
 </body>
 </html>
