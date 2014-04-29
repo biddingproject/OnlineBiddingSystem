@@ -36,6 +36,8 @@ public class ItemList implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "seller_id")
 	private Seller seller;
+	
+	private int numberOfItems;
 
 	@Column(name = "current_bid")
 	private Float currentBid;
@@ -163,6 +165,14 @@ public class ItemList implements Serializable {
 
 	public void setItemCategory(ItemCategory itemCategory) {
 		this.itemCategory = itemCategory;
+	}
+
+	public int getNumberOfItems() {
+		return numberOfItems;
+	}
+
+	public void setNumberOfItems(int numberOfItems) {
+		this.numberOfItems = numberOfItems;
 	}
 
 }
