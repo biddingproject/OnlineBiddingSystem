@@ -51,7 +51,8 @@ public class ItemListController {
 			ModelMap model,
 			@RequestParam(value = "bidStartTime", required = true) String bidStartTime,
 			@RequestParam(value = "expireTime", required = true) String expireTime,
-			@RequestParam(value = "timeOffset", required = true) int timeOffset)
+			@RequestParam(value = "timeOffset", required = true) int timeOffset,
+			@RequestParam(value = "itemCategoryId", required = true) int itemCategoryId)
 			throws ParseException {
 
 		if (result.hasErrors()) {
@@ -74,7 +75,7 @@ public class ItemListController {
 
 			itemList.setBidStartTimeStamp(startTime);
 			itemList.setExpireTimeStamp(endTime);
-			itemListService.createItemLIst(itemList, email);
+			itemListService.createItemLIst(itemList,itemCategoryId, email);
 			
 			model.put("itemList", new ItemList());
 			return "/profile/seller";

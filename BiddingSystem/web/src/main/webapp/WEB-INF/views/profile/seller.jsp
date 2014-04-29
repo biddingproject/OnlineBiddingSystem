@@ -52,8 +52,15 @@
 				<label for="expireTimeStamp">Bid end time</label> <input
 					type="datetime-local" name="expireTime">
 			</div>
+			
+			<div>
+				<label for="itemCategoryId">Item Category</label> <input
+					type="text" name="itemCategoryId">
+			</div>
+			
 			<input type="hidden" id="timeOffset" name="timeOffset"
-				value="getTimeOffset();"> <input type="submit"
+				value="getTimeOffset();"> 
+			<input type="submit"
 				value="create item list">
 		</fieldset>
 	</form:form>

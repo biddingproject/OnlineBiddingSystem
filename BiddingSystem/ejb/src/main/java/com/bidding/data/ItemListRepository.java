@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import com.bidding.model.ItemCategory;
 import com.bidding.model.ItemList;
 import com.bidding.model.Seller;
 
@@ -15,9 +16,12 @@ public class ItemListRepository {
 
 	@Inject
 	private EntityManager em;
-	
+
 	@Inject
 	private UserRepository userRepository;
+
+	@Inject
+	private ItemCategoryRepository itemCategoryRepository;
 
 	public ItemList findById(Long id) {
 		return em.find(ItemList.class, id);
@@ -26,12 +30,15 @@ public class ItemListRepository {
 	/**
 	 * 
 	 * @param itemList
+	 * @param itemCategory
 	 * @param email
 	 */
-	public void createItemList(ItemList itemList, String email) {
-		
+	public void createItemList(ItemList itemList, int itemCategory, String email) {
+		ItemCategory itemCat = itemCategoryRepository
+				.getItemCategoryById(itemCategory);
 		Seller seller = userRepository.findByEmail(email).getSeller();
 		itemList.setCurrentBid(itemList.getBaseBid());
+		itemList.setItemCategory(itemCat);
 		em.persist(itemList);
 		itemList.setSeller(seller);
 		seller.getAuctionedItemLists().add(itemList);

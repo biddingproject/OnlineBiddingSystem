@@ -12,7 +12,7 @@ public class ItemListService {
 	@Inject
 	ItemListRepository itemListRepository;
 
-	public void createItemLIst(ItemList itemList, String email) {
-		itemListRepository.createItemList(itemList,email);
+	public void createItemLIst(ItemList itemList, int itemCategory, String email) {
+		itemListRepository.createItemList(itemList,itemCategory,email);
 	}
 }
