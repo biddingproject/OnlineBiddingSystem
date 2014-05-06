@@ -62,6 +62,7 @@ public class User implements Serializable {
 	@NotNull
 	@NotEmpty
 	@Email
+	@Column(unique=true)
 	private String email;
 
 	@NotNull

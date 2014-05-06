@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -52,15 +54,18 @@
 				<label for="expireTimeStamp">Bid end time</label> <input
 					type="datetime-local" name="expireTime">
 			</div>
-			
+
 			<div>
-				<label for="itemCategoryId">Item Category</label> <input
-					type="text" name="itemCategoryId">
+				<label for="itemCategoryId">Item Category</label> <select
+					name="itemCategoryId" id="itemCategoryId">
+					<c:forEach items="${itemCategoryList}" var="itemCategory">
+						<option value="${itemCategory.id}">${itemCategory.categoryName}</option>
+					</c:forEach>
+				</select>
 			</div>
-			
+
 			<input type="hidden" id="timeOffset" name="timeOffset"
-				value="getTimeOffset();"> 
-			<input type="submit"
+				value="getTimeOffset();"> <input type="submit"
 				value="create item list">
 		</fieldset>
 	</form:form>

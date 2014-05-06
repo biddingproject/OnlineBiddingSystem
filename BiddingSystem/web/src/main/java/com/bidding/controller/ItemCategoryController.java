@@ -16,20 +16,22 @@ public class ItemCategoryController {
 	ItemCategoryService itemCategoryService;
 
 	@RequestMapping(value = "/itemCategoryPage", method = RequestMethod.GET)
-	public String itemCategoryPage(ModelMap map) {
-
+	public String itemCategoryPage(ModelMap model) {
+		model.put("itemCategoryList", itemCategoryService.getAllItemCategories());
 		return "/profile/admin";
 	}
 
 	@RequestMapping(value = "/createItemCategory", method = RequestMethod.POST)
 	public String createItemCategory(
-			ModelMap map,
+			ModelMap model,
 			@RequestParam(value = "categoryName", required = true) String categoryName,
 			@RequestParam(value = "parentCategory", required = false) String parentCategoryId) {
 		int parentCatId = 0;
-		if(!parentCategoryId.equals(null)&&(!parentCategoryId.equals(""))){
+		
+		if(parentCategoryId!=null && (!parentCategoryId.equals(null))&&(!parentCategoryId.equals(""))){
 			parentCatId = Integer.parseInt(parentCategoryId);
 		}
+		model.put("itemCategoryList", itemCategoryService.getAllItemCategories());
 		itemCategoryService.createCategory(categoryName,parentCatId);
 		return "/profile/admin";
 	}

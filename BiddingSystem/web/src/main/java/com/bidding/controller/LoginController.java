@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bidding.model.ItemList;
+import com.bidding.service.ItemCategoryService;
 import com.bidding.service.UserService;
 
 @Controller
@@ -24,6 +25,9 @@ public class LoginController {
 
 	@EJB(mappedName = "java:app/BiddingSystem-ejb/UserService")
 	UserService userService;
+
+	@EJB(mappedName = "java:app/BiddingSystem-ejb/ItemCategoryService")
+	ItemCategoryService itemCategoryService;
 
 	static Logger log = Logger.getLogger(LoginController.class.getName());
 
@@ -113,6 +117,8 @@ public class LoginController {
 	@RequestMapping(value = "/seller", method = RequestMethod.GET)
 	public String loadSellerProfile(ModelMap model) {
 		model.put("itemList", new ItemList());
+		System.out.println("number of item categories"+ itemCategoryService.getAllItemCategories().size());
+		model.put("itemCategoryList", itemCategoryService.getAllItemCategories());
 		return "/profile/seller";
 	}
 
@@ -144,7 +150,7 @@ public class LoginController {
 		} catch (Exception e) {
 			System.out.println("buffer case");
 		}
-		
+
 	}
 
 }
