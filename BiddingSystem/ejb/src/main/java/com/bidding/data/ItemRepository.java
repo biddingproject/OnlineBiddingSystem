@@ -21,4 +21,8 @@ public class ItemRepository {
 		em.persist(itemCategory);
 		return null;
 	}
+	
+	public void deleteItemCategory(){
+		
+	}
 }

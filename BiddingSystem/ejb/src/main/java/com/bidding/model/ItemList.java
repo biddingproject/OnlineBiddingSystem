@@ -44,6 +44,8 @@ public class ItemList implements Serializable {
 
 	@Column(name = "base_bid")
 	private Float baseBid;
+	
+	private boolean isBiddable;
 
 	@OneToOne
 	private ItemCategory itemCategory;
@@ -173,6 +175,14 @@ public class ItemList implements Serializable {
 
 	public void setNumberOfItems(int numberOfItems) {
 		this.numberOfItems = numberOfItems;
+	}
+
+	public boolean getIsBiddable() {
+		return isBiddable;
+	}
+
+	public void setIsBiddable(boolean isBiddable) {
+		this.isBiddable = isBiddable;
 	}
 
 }

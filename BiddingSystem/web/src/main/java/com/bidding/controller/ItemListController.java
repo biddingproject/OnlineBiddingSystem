@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bidding.model.ItemList;
+import com.bidding.service.ItemCategoryService;
 import com.bidding.service.ItemListService;
 
 /**
@@ -31,9 +32,12 @@ public class ItemListController {
 
 	@EJB(mappedName = "java:app/BiddingSystem-ejb/ItemListService")
 	ItemListService itemListService;
-	
+
 	@Autowired
 	SimpleDateFormat dateFormatter;
+	
+	@EJB(mappedName = "java:app/BiddingSystem-ejb/ItemCategoryService")
+	ItemCategoryService itemCategoryService;
 
 	/**
 	 * 
@@ -49,8 +53,8 @@ public class ItemListController {
 			@ModelAttribute("itemList") ItemList itemList,
 			BindingResult result,
 			ModelMap model,
-			@RequestParam(value = "bidStartTime", required = true) String bidStartTime,
-			@RequestParam(value = "expireTime", required = true) String expireTime,
+			@RequestParam(value = "bidStartTime", required = false) String bidStartTime,
+			@RequestParam(value = "expireTime", required = false) String expireTime,
 			@RequestParam(value = "timeOffset", required = true) int timeOffset,
 			@RequestParam(value = "itemCategoryId", required = true) int itemCategoryId)
 			throws ParseException {
@@ -60,24 +64,31 @@ public class ItemListController {
 		} else {
 			String email = SecurityContextHolder.getContext()
 					.getAuthentication().getName();
-
-			Date startTime = dateFormatter.parse(bidStartTime.replace("T", " "));
-			Date endTime = dateFormatter.parse(expireTime.replace("T", " "));
-
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(startTime);
-			cal.add(Calendar.MINUTE, timeOffset);
-			startTime = cal.getTime();
-
-			cal.setTime(endTime);
-			cal.add(Calendar.MINUTE, timeOffset);
-			endTime = cal.getTime();
-
-			itemList.setBidStartTimeStamp(startTime);
-			itemList.setExpireTimeStamp(endTime);
-			itemListService.createItemLIst(itemList,itemCategoryId, email);
 			
+			if (itemList.getIsBiddable()) {
+				
+				Date startTime = dateFormatter.parse(bidStartTime.replace("T",
+						" "));
+				Date endTime = dateFormatter
+						.parse(expireTime.replace("T", " "));
+
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(startTime);
+				cal.add(Calendar.MINUTE, timeOffset);
+				startTime = cal.getTime();
+
+				cal.setTime(endTime);
+				cal.add(Calendar.MINUTE, timeOffset);
+				endTime = cal.getTime();
+
+				itemList.setBidStartTimeStamp(startTime);
+				itemList.setExpireTimeStamp(endTime);
+			}
+
+			itemListService.createItemLIst(itemList, itemCategoryId, email);
+
 			model.put("itemList", new ItemList());
+			model.put("itemCategoryList", itemCategoryService.getAllItemCategories());
 			return "/profile/seller";
 		}
 

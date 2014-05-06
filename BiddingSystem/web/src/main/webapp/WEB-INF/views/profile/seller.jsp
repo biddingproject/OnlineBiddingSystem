@@ -45,6 +45,11 @@
 				<form:input type="text" id="numberOfItems" path="numberOfItems"
 					placeholder="number of items" required="required" />
 			</div>
+			
+			<div>
+				<form:label path="isBiddable" for="isBiddable">Eligible for bididng</form:label>
+				<form:checkbox path="isBiddable" name="isBiddable" checked="checked" />
+			</div>
 
 			<div>
 				<label for="bidStartTimeStamp">Bid start time</label> <input

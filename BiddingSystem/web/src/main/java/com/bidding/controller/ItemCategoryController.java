@@ -15,12 +15,24 @@ public class ItemCategoryController {
 	@EJB(mappedName = "java:app/BiddingSystem-ejb/ItemCategoryService")
 	ItemCategoryService itemCategoryService;
 
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/itemCategoryPage", method = RequestMethod.GET)
 	public String itemCategoryPage(ModelMap model) {
 		model.put("itemCategoryList", itemCategoryService.getAllItemCategories());
 		return "/profile/admin";
 	}
 
+	/**
+	 * 
+	 * @param model
+	 * @param categoryName
+	 * @param parentCategoryId
+	 * @return
+	 */
 	@RequestMapping(value = "/createItemCategory", method = RequestMethod.POST)
 	public String createItemCategory(
 			ModelMap model,
@@ -36,6 +48,11 @@ public class ItemCategoryController {
 		return "/profile/admin";
 	}
 
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteItemCategory", method = RequestMethod.POST)
 	public String deleteItemCategory(ModelMap map) {
 
