@@ -60,6 +60,9 @@ public class ItemList implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bidStartTimeStamp;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date itemListCreatedTime;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expireTimeStamp;
@@ -183,6 +186,14 @@ public class ItemList implements Serializable {
 
 	public void setIsBiddable(boolean isBiddable) {
 		this.isBiddable = isBiddable;
+	}
+
+	public Date getItemListCreatedTime() {
+		return itemListCreatedTime;
+	}
+
+	public void setItemListCreatedTime(Date itemListCreatedTime) {
+		this.itemListCreatedTime = itemListCreatedTime;
 	}
 
 }

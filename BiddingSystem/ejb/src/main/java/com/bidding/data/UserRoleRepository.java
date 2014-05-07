@@ -21,10 +21,20 @@ public class UserRoleRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * 
+     * @param userRoleId
+     * @return
+     */
     public UserRole findByUserRoleId(Long userRoleId) {
         return entityManager.find(UserRole.class, userRoleId);
     }
 
+    /**
+     * 
+     * @param userRoleName
+     * @return
+     */
     public UserRole findByUserRoleName(String userRoleName) {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();

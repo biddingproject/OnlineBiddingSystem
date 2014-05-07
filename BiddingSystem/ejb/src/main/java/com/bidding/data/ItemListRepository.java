@@ -1,5 +1,12 @@
 package com.bidding.data;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -36,12 +43,20 @@ public class ItemListRepository {
 	public void createItemList(ItemList itemList, int itemCategory, String email) {
 		ItemCategory itemCat = itemCategoryRepository
 				.getItemCategoryById(itemCategory);
+
+		Calendar cal = Calendar.getInstance();
+		TimeZone timeZone = cal.getTimeZone();
+		cal.add(Calendar.MILLISECOND, timeZone.getRawOffset());
+		Date timeCreated = cal.getTime();
+
+		itemList.setItemListCreatedTime(timeCreated);
 		Seller seller = userRepository.findByEmail(email).getSeller();
 		itemList.setCurrentBid(itemList.getBaseBid());
 		itemList.setItemCategory(itemCat);
 		em.persist(itemList);
 		itemList.setSeller(seller);
 		seller.getAuctionedItemLists().add(itemList);
+
 	}
 
 	/**
