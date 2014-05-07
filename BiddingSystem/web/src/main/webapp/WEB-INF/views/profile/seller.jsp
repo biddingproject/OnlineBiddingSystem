@@ -9,8 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="<%=request.getContextPath()%>/dashboard">dashboard</a> seller
-	profile
+	<a href="<%=request.getContextPath()%>/dashboard">dashboard</a>
+	<a href="<%=request.getContextPath()%>/getMyItemLists">my item
+		lists</a> seller profile
 	<hr />
 
 	<form:form method="post" action="createItemList"
@@ -45,7 +46,7 @@
 				<form:input type="text" id="numberOfItems" path="numberOfItems"
 					placeholder="number of items" required="required" />
 			</div>
-			
+
 			<div>
 				<form:label path="isBiddable" for="isBiddable">Eligible for bididng</form:label>
 				<form:checkbox path="isBiddable" name="isBiddable" checked="checked" />

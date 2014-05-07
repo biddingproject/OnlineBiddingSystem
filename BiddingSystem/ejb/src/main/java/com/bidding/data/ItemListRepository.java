@@ -1,10 +1,8 @@
 package com.bidding.data;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.SimpleTimeZone;
+import java.util.List;
 import java.util.TimeZone;
 
 import javax.ejb.Stateless;
@@ -28,6 +26,9 @@ public class ItemListRepository {
 	private UserRepository userRepository;
 
 	@Inject
+	private SellerRepository sellerRepository;
+
+	@Inject
 	private ItemCategoryRepository itemCategoryRepository;
 
 	public ItemList findById(Long id) {
@@ -41,6 +42,7 @@ public class ItemListRepository {
 	 * @param email
 	 */
 	public void createItemList(ItemList itemList, int itemCategory, String email) {
+
 		ItemCategory itemCat = itemCategoryRepository
 				.getItemCategoryById(itemCategory);
 
@@ -53,6 +55,7 @@ public class ItemListRepository {
 		Seller seller = userRepository.findByEmail(email).getSeller();
 		itemList.setCurrentBid(itemList.getBaseBid());
 		itemList.setItemCategory(itemCat);
+
 		em.persist(itemList);
 		itemList.setSeller(seller);
 		seller.getAuctionedItemLists().add(itemList);
@@ -65,6 +68,7 @@ public class ItemListRepository {
 	 * @return
 	 */
 	public ItemList findItemListBySeller(Long id) {
+
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<ItemList> criteria = cb.createQuery(ItemList.class);
 		Root<ItemList> itemList = criteria.from(ItemList.class);
@@ -81,4 +85,28 @@ public class ItemListRepository {
 		em.remove(em.contains(itemList) ? itemList : em.merge(itemList));
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @param pageNumber
+	 * @return
+	 */
+	public List<ItemList> getItemListsByEmail(String email, short pageNumber) {
+
+		List<ItemList> itemLists = null;
+
+		Seller seller = sellerRepository.findSellerByEmail(email);
+
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<ItemList> criteria = cb.createQuery(ItemList.class);
+		Root<ItemList> itemList = criteria.from(ItemList.class);
+		criteria.select(itemList).where(
+				cb.equal(itemList.get("seller").get("id"), seller.getId()));
+		criteria.orderBy(cb.desc(itemList.get("id")));
+		itemLists = em.createQuery(criteria)
+				.setFirstResult((pageNumber - 1) * 25).setMaxResults(25)
+				.getResultList();
+
+		return itemLists;
+	}
 }

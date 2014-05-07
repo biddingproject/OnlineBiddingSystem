@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 
@@ -35,7 +36,7 @@ public class ItemListController {
 
 	@Autowired
 	SimpleDateFormat dateFormatter;
-	
+
 	@EJB(mappedName = "java:app/BiddingSystem-ejb/ItemCategoryService")
 	ItemCategoryService itemCategoryService;
 
@@ -64,9 +65,9 @@ public class ItemListController {
 		} else {
 			String email = SecurityContextHolder.getContext()
 					.getAuthentication().getName();
-			
+
 			if (itemList.getIsBiddable()) {
-				
+
 				Date startTime = dateFormatter.parse(bidStartTime.replace("T",
 						" "));
 				Date endTime = dateFormatter
@@ -88,11 +89,29 @@ public class ItemListController {
 			itemListService.createItemLIst(itemList, itemCategoryId, email);
 
 			model.put("itemList", new ItemList());
-			model.put("itemCategoryList", itemCategoryService.getAllItemCategories());
+			model.put("itemCategoryList",
+					itemCategoryService.getAllItemCategories());
 			return "/profile/seller";
 		}
 
 		model.put("itemList", new ItemList());
 		return "/profile/seller";
+	}
+
+	/**
+	 * returns the logged in sellers item lists
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@PreAuthorize("hasRole('ROLE_SELLER')")
+	@RequestMapping(value = "/getMyItemLists", method = RequestMethod.GET)
+	public String getMyItemLists(ModelMap model) {
+		String email = SecurityContextHolder.getContext().getAuthentication()
+				.getName();
+		List<ItemList> itemLists = itemListService.getItemLists(email,
+				(short) 1);
+		model.put("itemLists", itemLists);
+		return "/profile/sellerItemLists";
 	}
 }
