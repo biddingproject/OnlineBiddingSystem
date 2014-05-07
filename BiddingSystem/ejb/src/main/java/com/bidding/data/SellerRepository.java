@@ -16,10 +16,20 @@ public class SellerRepository {
 	@Inject
 	private UserRepository userRepository;
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Seller findById(Long id) {
 		return em.find(Seller.class, id);
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public Seller findSellerByEmail(String email) {
 		User user = userRepository.getUserByEmail(email);
 		return user.getSeller();

@@ -128,4 +128,22 @@ public class ItemListController {
 		model.put("itemList", itemList);
 		return "/profile/itemList";
 	}
+
+	/**
+	 * 
+	 * @param model
+	 * @param itemListId
+	 * @return
+	 */
+	@RequestMapping(value = "/buyItem", method = RequestMethod.POST)
+	public String buyItem(ModelMap model,
+			@RequestParam(value = "itemListId", required = true) long itemListId) {
+		String email = SecurityContextHolder.getContext().getAuthentication()
+				.getName();
+		ItemList itemList = itemListService.getItemListById(itemListId);
+		model.put("itemList", itemList);
+		model.put("buyerEmail", email);
+		
+		return "/profile/buyItem";
+	}
 }
