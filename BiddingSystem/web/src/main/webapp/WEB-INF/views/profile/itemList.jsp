@@ -14,14 +14,23 @@
 	
 	Item list name : ${itemList.name} <br/>
 	Item list description :	${itemList.description} <br/>
-	Number of remaining items : ${itemList.unsoldItemCount} <br/>
-	Sold : ${itemList.soldItemsCount}<br/>
 	
-	Buy it now : ${itemList.buyItNowPrice}
-	<form action="buyItem" method="post">
-		<input type="hidden" name="itemListId" value="${itemList.id}"/>
-		<input type="submit" value="Buy"/>
-	</form>
+	<c:choose>
+		<c:when test="${itemList.unsoldItemCount > '0'}">
+		
+			Number of remaining items : ${itemList.unsoldItemCount} <br/>
+			Sold : ${itemList.soldItemsCount}<br/>
+			Buy it now : ${itemList.buyItNowPrice}
+			
+			<form action="buyItem" method="post">
+				<input type="hidden" name="itemListId" value="${itemList.id}"/>
+				<input type="submit" value="Buy"/>
+			</form>
+		</c:when>
+		<c:when test="${itemList.unsoldItemCount <= '0'}">
+			Item is not available for sale !!!
+		</c:when>
+	</c:choose>
 	</div>
 	
 </body>

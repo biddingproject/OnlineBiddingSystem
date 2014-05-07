@@ -21,10 +21,12 @@
 		</tr>
 
 		<c:forEach items="${itemLists}" var="itemList">
+		<tr>
 			<td><a href="<%=request.getContextPath()%>/getItemListPage?itemListId=${itemList.id}">${itemList.name}</a></td>
 			<td>${itemList.buyItNowPrice}</td>
 			<td>${itemList.numberOfItems}</td>
 			<td>${itemList.description}</td>
+		</tr>
 		</c:forEach>
 	</table>
 </body>
