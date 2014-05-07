@@ -114,4 +114,12 @@ public class ItemListController {
 		model.put("itemLists", itemLists);
 		return "/profile/sellerItemLists";
 	}
+
+	@RequestMapping(value = "/getItemListPage", method = RequestMethod.GET)
+	public String getItemListPage(ModelMap model,
+			@RequestParam(value = "itemListId", required = true) long itemListId) {
+		ItemList itemList = itemListService.getItemListById(itemListId);
+		model.put("itemList", itemList);
+		return "/profile/itemList";
+	}
 }

@@ -32,4 +32,8 @@ public class ItemListService {
 	public List<ItemList> getItemLists(String email, short pageNumber) {
 		return itemListRepository.getItemListsByEmail(email, pageNumber);
 	}
+
+	public ItemList getItemListById(long itemListId) {
+		return itemListRepository.findById(itemListId);
+	}
 }
