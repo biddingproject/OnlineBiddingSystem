@@ -36,7 +36,7 @@ public class ItemList implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "seller_id")
 	private Seller seller;
-	
+
 	private int numberOfItems;
 
 	@Column(name = "current_bid")
@@ -44,7 +44,7 @@ public class ItemList implements Serializable {
 
 	@Column(name = "base_bid")
 	private Float baseBid;
-	
+
 	private boolean isBiddable;
 
 	@OneToOne
@@ -58,9 +58,13 @@ public class ItemList implements Serializable {
 	@NotNull
 	private String description;
 
+	private int soldItemsCount;
+
+	private int unsoldItemCount;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bidStartTimeStamp;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date itemListCreatedTime;
 
@@ -194,6 +198,22 @@ public class ItemList implements Serializable {
 
 	public void setItemListCreatedTime(Date itemListCreatedTime) {
 		this.itemListCreatedTime = itemListCreatedTime;
+	}
+
+	public int getSoldItemsCount() {
+		return soldItemsCount;
+	}
+
+	public void setSoldItemsCount(int soldItemsCount) {
+		this.soldItemsCount = soldItemsCount;
+	}
+
+	public int getUnsoldItemCount() {
+		return unsoldItemCount;
+	}
+
+	public void setUnsoldItemCount(int unsoldItemCount) {
+		this.unsoldItemCount = unsoldItemCount;
 	}
 
 }

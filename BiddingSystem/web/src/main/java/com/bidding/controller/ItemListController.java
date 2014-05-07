@@ -115,6 +115,12 @@ public class ItemListController {
 		return "/profile/sellerItemLists";
 	}
 
+	/**
+	 * 
+	 * @param model
+	 * @param itemListId
+	 * @return
+	 */
 	@RequestMapping(value = "/getItemListPage", method = RequestMethod.GET)
 	public String getItemListPage(ModelMap model,
 			@RequestParam(value = "itemListId", required = true) long itemListId) {

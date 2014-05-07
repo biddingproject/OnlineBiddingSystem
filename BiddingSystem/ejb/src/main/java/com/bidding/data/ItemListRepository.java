@@ -50,12 +50,15 @@ public class ItemListRepository {
 		TimeZone timeZone = cal.getTimeZone();
 		cal.add(Calendar.MILLISECOND, timeZone.getRawOffset());
 		Date timeCreated = cal.getTime();
-
+		
+		itemList.setSoldItemsCount(0);
+		itemList.setUnsoldItemCount(itemList.getNumberOfItems());
 		itemList.setItemListCreatedTime(timeCreated);
-		Seller seller = userRepository.findByEmail(email).getSeller();
 		itemList.setCurrentBid(itemList.getBaseBid());
 		itemList.setItemCategory(itemCat);
-
+		
+		Seller seller = userRepository.findByEmail(email).getSeller();
+		
 		em.persist(itemList);
 		itemList.setSeller(seller);
 		seller.getAuctionedItemLists().add(itemList);

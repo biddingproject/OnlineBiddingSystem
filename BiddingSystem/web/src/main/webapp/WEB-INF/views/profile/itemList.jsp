@@ -11,9 +11,18 @@
 	<a href="<%=request.getContextPath()%>/dashboard">dashboard</a>
 	customer profile
 	<div>
+	
 	Item list name : ${itemList.name} <br/>
 	Item list description :	${itemList.description} <br/>
-	Buy it now price : ${itemList.buyItNowPrice} <br/>
-	Number of items : ${itemList.numberOfItems}</div>
+	Number of remaining items : ${itemList.unsoldItemCount} <br/>
+	Sold : ${itemList.soldItemsCount}<br/>
+	
+	Buy it now : ${itemList.buyItNowPrice}
+	<form action="buyItem" method="post">
+		<input type="hidden" name="itemListId" value="${itemList.id}"/>
+		<input type="submit" value="Buy"/>
+	</form>
+	</div>
+	
 </body>
 </html>
