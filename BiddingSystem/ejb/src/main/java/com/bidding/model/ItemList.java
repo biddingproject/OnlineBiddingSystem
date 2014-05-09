@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -37,6 +38,7 @@ public class ItemList implements Serializable {
 	@JoinColumn(name = "seller_id")
 	private Seller seller;
 
+	@DecimalMin(value = "1")
 	private int numberOfItems;
 
 	@Column(name = "current_bid")

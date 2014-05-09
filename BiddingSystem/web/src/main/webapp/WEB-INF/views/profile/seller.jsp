@@ -47,7 +47,7 @@
 				<div>
 					<form:label path="numberOfItems" for="numberOfItems">Number of items</form:label>
 					<form:input type="text" id="numberOfItems" path="numberOfItems"
-						placeholder="number of items" required="required" />
+						placeholder="number of items" required="required" min="1" />
 				</div>
 	
 				<div>
