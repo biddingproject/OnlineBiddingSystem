@@ -30,6 +30,10 @@ public class Seller implements Serializable{
 	
 	@OneToMany(mappedBy="seller")
 	private List<ItemList> auctionedItemLists = new ArrayList<ItemList>();
+	
+	private int numberOfRatings;
+	
+	private float averageRating;
 
 	public Long getId() {
 		return id;
@@ -53,6 +57,22 @@ public class Seller implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public int getNumberOfRatings() {
+		return numberOfRatings;
+	}
+
+	public void setNumberOfRatings(int numberOfRatings) {
+		this.numberOfRatings = numberOfRatings;
+	}
+
+	public float getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(float averageRating) {
+		this.averageRating = averageRating;
 	}
 	
 
