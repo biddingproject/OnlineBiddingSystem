@@ -1,6 +1,7 @@
 package com.bidding.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bidding.model.ItemCategory;
 import com.bidding.model.ItemList;
 import com.bidding.service.ItemCategoryService;
 import com.bidding.service.UserService;
@@ -116,9 +118,18 @@ public class LoginController {
 	@PreAuthorize("hasRole('ROLE_SELLER')")
 	@RequestMapping(value = "/seller", method = RequestMethod.GET)
 	public String loadSellerProfile(ModelMap model) {
+
 		model.put("itemList", new ItemList());
-		System.out.println("number of item categories"+ itemCategoryService.getAllItemCategories().size());
-		model.put("itemCategoryList", itemCategoryService.getAllItemCategories());
+		List<ItemCategory> itemCategories = itemCategoryService
+				.getAllItemCategories();
+
+		if (itemCategories != null && itemCategories.size() != 0) {
+			model.put("itemCategoryList", itemCategories);
+			model.put("itemCategoryListSize", itemCategories.size());
+		} else {
+			model.put("itemCategoryListSize", 0);
+		}
+
 		return "/profile/seller";
 	}
 
