@@ -29,6 +29,13 @@
 				<form:input type="password" id="password" placeholder="password"
 					path="password" value="" required="required" pattern=".{5,50}" />
 			</div>
+			
+			<div>
+				<label for="confirmPassword">Confirm Password</label>
+				<input type="password" id="confirmPassword" placeholder="password"
+					name="confirmPassword" value="" required="required" pattern=".{5,50}" />
+			</div>
+			
 			<div>
 				<form:label path="phoneNumber" for="phoneNumber">Phone Number</form:label>
 				<form:input type="text" id="phoneNumber" placeholder="phoneNumber"

@@ -51,18 +51,28 @@ public class UserController {
 	}
 
 	/**
-	 * add the user to the db
+	 * handle user registration form submit
 	 * 
+	 * @param user
+	 * @param result
 	 * @param model
+	 * @param confirmPassword
 	 * @return
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String RegisterUser(@ModelAttribute("user") User user,
-			BindingResult result, ModelMap model) {
+	public String RegisterUser(
+			@ModelAttribute("user") User user,
+			BindingResult result,
+			ModelMap model,
+			@RequestParam(value = "confirmPassword", required = true) String confirmPassword) {
 
 		if (result.hasErrors()) {
 			System.out.println("binding result has errors");
 		} else {
+
+			if (!confirmPassword.equals(user.getPassword())) {
+				return "registrationError";
+			}
 
 			String encodedPass = shaPasswordEncoder.encodePassword(
 					user.getPassword(), null);
@@ -137,10 +147,10 @@ public class UserController {
 	@RequestMapping(value = "/updateUserInformation", method = RequestMethod.POST)
 	public String updateUserInformation(@ModelAttribute("user") User user,
 			BindingResult result, ModelMap model) {
-		String email = SecurityContextHolder.getContext()
-				.getAuthentication().getName();
-		
-		userService.updateUserInformation(email,user);
+		String email = SecurityContextHolder.getContext().getAuthentication()
+				.getName();
+
+		userService.updateUserInformation(email, user);
 		return "redirect:/dashboard";
 	}
 }
