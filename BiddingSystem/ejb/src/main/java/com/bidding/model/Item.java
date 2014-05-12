@@ -45,6 +45,9 @@ public class Item implements Serializable{
 	
 	@Size(max = 180)
 	private String customerReview;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date itemBoughtTime;
 
 	public Long getId() {
 		return id;
@@ -100,6 +103,14 @@ public class Item implements Serializable{
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+	
+	public Date getItemBoughtTime() {
+		return itemBoughtTime;
+	}
+
+	public void setItemBoughtTime(Date itemBoughtTime) {
+		this.itemBoughtTime = itemBoughtTime;
 	}
 	
 
