@@ -73,12 +73,17 @@ public class UserController {
 			if (!confirmPassword.equals(user.getPassword())) {
 				return "registrationError";
 			}
+			try {
+				String encodedPass = shaPasswordEncoder.encodePassword(
+						user.getPassword(), null);
+				user.setPassword(encodedPass);
+				userRegistrationService.registerUser(user);
+				return "registrationSuccess";
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "registrationError";
+			}
 
-			String encodedPass = shaPasswordEncoder.encodePassword(
-					user.getPassword(), null);
-			user.setPassword(encodedPass);
-			userRegistrationService.registerUser(user);
-			return "registrationSuccess";
 		}
 		return "register";
 	}

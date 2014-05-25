@@ -14,6 +14,7 @@
 		<label for="categoryName">Item category name </label><input
 			name="categoryName" /> <label for="itemCategoryId">Item
 			Category</label> <select name="parentCategory" id="parentCategory">
+			<option value="null">no parent</option>
 			<c:forEach items="${itemCategoryList}" var="itemCat">
 				<option value="${itemCat.id}">${itemCat.categoryName}</option>
 			</c:forEach>

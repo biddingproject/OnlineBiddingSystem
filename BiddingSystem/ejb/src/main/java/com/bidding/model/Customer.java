@@ -32,7 +32,7 @@ public class Customer implements Serializable {
 	private int numberOfBlackMarks = 0;
 
 	@OneToMany(mappedBy = "customer")
-	private List<Item> boughtItems = new ArrayList<Item>();
+	private List<Transaction> boughtItems = new ArrayList<Transaction>();
 
 	@OneToMany(mappedBy = "customer")
 	private List<Bid> bidList = new ArrayList<Bid>();
@@ -45,11 +45,11 @@ public class Customer implements Serializable {
 		this.id = id;
 	}
 
-	public List<Item> getBoughtItems() {
+	public List<Transaction> getBoughtItems() {
 		return boughtItems;
 	}
 
-	public void setBoughtItems(List<Item> boughtItems) {
+	public void setBoughtItems(List<Transaction> boughtItems) {
 		this.boughtItems = boughtItems;
 	}
 

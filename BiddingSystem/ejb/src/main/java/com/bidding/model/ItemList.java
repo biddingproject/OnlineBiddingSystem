@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +22,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.bidding.util.ItemCondition;
 
 @Entity
 @Table(name = "item_list")
@@ -40,7 +44,7 @@ public class ItemList implements Serializable {
 
 	@DecimalMin(value = "1")
 	private int numberOfItems;
-
+	
 	@Column(name = "current_bid")
 	private Float currentBid;
 
@@ -77,10 +81,13 @@ public class ItemList implements Serializable {
 	private Float buyItNowPrice;
 
 	@OneToMany(mappedBy = "itemList")
-	private List<Item> soldItems = new ArrayList<Item>();
+	private List<Transaction> transactionList = new ArrayList<Transaction>();
 
 	@OneToMany(mappedBy = "itemList")
 	private List<Bid> bidList = new ArrayList<Bid>();
+	
+	@Enumerated(EnumType.STRING)
+	private ItemCondition itemCondition;
 
 	public Long getId() {
 		return id;
@@ -146,14 +153,6 @@ public class ItemList implements Serializable {
 		this.bidStartTimeStamp = bidStartTimeStamp;
 	}
 
-	public List<Item> getSoldItems() {
-		return soldItems;
-	}
-
-	public void setSoldItems(List<Item> soldItems) {
-		this.soldItems = soldItems;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -216,6 +215,22 @@ public class ItemList implements Serializable {
 
 	public void setUnsoldItemCount(int unsoldItemCount) {
 		this.unsoldItemCount = unsoldItemCount;
+	}
+
+	public List<Transaction> getTransactionList() {
+		return transactionList;
+	}
+
+	public void setTransactionList(List<Transaction> transactionList) {
+		this.transactionList = transactionList;
+	}
+	
+	public ItemCondition getItemCondition() {
+		return itemCondition;
+	}
+
+	public void setItemCondition(ItemCondition itemCondition) {
+		this.itemCondition = itemCondition;
 	}
 
 }
