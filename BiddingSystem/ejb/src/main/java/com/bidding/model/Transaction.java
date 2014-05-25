@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
@@ -51,6 +52,13 @@ public class Transaction implements Serializable{
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date itemBoughtTime;
+	
+	private int quantity;
+	
+	private boolean isRefunded = false;
+	
+	@OneToOne
+	private Refund refund;
 
 	public Long getId() {
 		return id;
@@ -114,6 +122,30 @@ public class Transaction implements Serializable{
 
 	public void setItemBoughtTime(Date itemBoughtTime) {
 		this.itemBoughtTime = itemBoughtTime;
+	}
+
+	public boolean isRefunded() {
+		return isRefunded;
+	}
+
+	public void setRefunded(boolean isRefunded) {
+		this.isRefunded = isRefunded;
+	}
+
+	public Refund getRefund() {
+		return refund;
+	}
+
+	public void setRefund(Refund refund) {
+		this.refund = refund;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 

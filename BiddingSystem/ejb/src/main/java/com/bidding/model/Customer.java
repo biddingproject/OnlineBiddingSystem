@@ -37,6 +37,9 @@ public class Customer implements Serializable {
 	@OneToMany(mappedBy = "customer")
 	private List<Bid> bidList = new ArrayList<Bid>();
 
+	@OneToMany(mappedBy = "customer")
+	private List<ShoppingCartItem> shoppingCartItems = new ArrayList<ShoppingCartItem>();
+
 	public Long getId() {
 		return id;
 	}
@@ -75,6 +78,14 @@ public class Customer implements Serializable {
 
 	public void setNumberOfBlackMarks(int numberOfBlackMarks) {
 		this.numberOfBlackMarks = numberOfBlackMarks;
+	}
+
+	public List<ShoppingCartItem> getShoppingCartItems() {
+		return shoppingCartItems;
+	}
+
+	public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
+		this.shoppingCartItems = shoppingCartItems;
 	}
 
 }
