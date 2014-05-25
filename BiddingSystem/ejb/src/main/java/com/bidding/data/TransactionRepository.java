@@ -8,7 +8,7 @@ import com.bidding.model.Transaction;
 import com.bidding.model.ItemCategory;
 
 @Stateless
-public class ItemRepository {
+public class TransactionRepository {
 	
 	@Inject
     private EntityManager em;
