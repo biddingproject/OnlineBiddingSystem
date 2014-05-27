@@ -3,33 +3,65 @@ package com.bidding.service;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
-import com.bidding.controller.ShoppingCart;
+import com.bidding.data.ShoppingCartRepository;
 import com.bidding.model.ShoppingCartItem;
 
 @Stateless
 public class ShoppingCartService {
 
-	public boolean addItemToCart(long itemId) {
+	@Inject
+	private ShoppingCartRepository shoppingCartRepository;
+
+	/**
+	 * 
+	 * @param itemListId
+	 * @param quantity
+	 * @param email
+	 * @return
+	 */
+	public boolean addItemToCart(long itemListId, int quantity, String email) {
+		shoppingCartRepository.addShoppingCartItem(itemListId, quantity, email);
 		return false;
 	}
 
-	public boolean removeItemFromCart(long itemId) {
+	/**
+	 * 
+	 * @param shoppingCartItemId
+	 * @return
+	 */
+	public boolean removeItemFromCart(long shoppingCartItemId) {
+		shoppingCartRepository.removeItemFromCart(shoppingCartItemId);
 		return false;
 	}
 
-	public boolean clearCart() {
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public boolean clearCart(String email) {
+		shoppingCartRepository.clearCart(email);
 		return false;
 	}
 
-	public boolean checkOutCart() {
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public boolean checkOutCart(String email) {
 		return false;
 	}
 
-	public List<ShoppingCartItem> getShoppingCart() {
-		return null;
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public List<ShoppingCartItem> getShoppingCart(String email) {
+		return shoppingCartRepository.getShoppingCartItemsByEmail(email);
 	}
-	
-	
 
 }
