@@ -94,6 +94,9 @@ public class ShoppingCartRepository {
 	public List<ShoppingCartItem> getShoppingCartItemsByEmail(String email) {
 		Customer customer = userRepository.getUserByEmail(email).getCustomer();
 		List<ShoppingCartItem> cartItems = customer.getShoppingCartItems();
+		for (ShoppingCartItem shoppingCartItem : cartItems) {
+			
+		}
 		return cartItems;
 	}
 }
