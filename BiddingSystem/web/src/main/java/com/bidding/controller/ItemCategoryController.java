@@ -40,6 +40,10 @@ public class ItemCategoryController {
 			@RequestParam(value = "parentCategory", required = false) String parentCategoryId) {
 		int parentCatId = 0;
 		
+		if(parentCategoryId.equals("null")){
+			parentCategoryId = null;
+		}
+		
 		if(parentCategoryId!=null && (!parentCategoryId.equals(null))&&(!parentCategoryId.equals(""))){
 			parentCatId = Integer.parseInt(parentCategoryId);
 		}

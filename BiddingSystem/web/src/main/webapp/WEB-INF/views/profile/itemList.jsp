@@ -24,8 +24,16 @@
 			
 			<form action="buyItem" method="post">
 				<input type="hidden" name="itemListId" value="${itemList.id}"/>
+				<input type="text" name="quantity" />
 				<input type="submit" value="Buy"/>
 			</form>
+			
+			<form action="addItemToCart" method="post">
+				<input type="hidden" name="itemListId" value="${itemList.id}"/>
+				<input type="text" name="quantity" />
+				<input type="submit" value="Add to shopping cart"/>
+			</form>
+			
 		</c:when>
 		<c:when test="${itemList.unsoldItemCount <= '0'}">
 			Item is not available for sale !!!
