@@ -5,6 +5,7 @@ import com.bidding.service.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.ejb.EJB;
 
@@ -24,7 +25,9 @@ public class SearchController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String searchResults() {
+    public String searchResults(@RequestParam(value = "searchKey", required = true) String searchKey) {
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>. search key : " + searchKey);
         return "searchResult";
     }
 }

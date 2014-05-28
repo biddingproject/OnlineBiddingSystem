@@ -2,7 +2,11 @@
 *.iml
 *.jar
 userManagement/.idea/*
+BiddingSystem/.idea/*
 userManagement/ejb/target/*
+BiddingSystem/ejb/target/*
 userManagement/ear/target/*
+BiddingSystem/ear/target/*
 userManagement/web/target/*
+BiddingSystem/web/target/*
 

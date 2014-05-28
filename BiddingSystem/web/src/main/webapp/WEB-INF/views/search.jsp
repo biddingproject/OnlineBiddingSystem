@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: kavi
@@ -11,6 +12,15 @@
     <title>Search</title>
 </head>
 <body>
-    <h1>Item Search</h1>
+    <form:form method="post" action="search">
+        <fieldset>
+            <div>
+                <input type="text" id="searchKey" name="searchKey" value="" placeholder="type your search here"
+                    required="required" />
+
+                <input type="submit" value="Search">
+            </div>
+        </fieldset>
+    </form:form>
 </body>
 </html>
