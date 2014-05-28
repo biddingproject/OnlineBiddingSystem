@@ -72,15 +72,16 @@ public class ShoppingCartRepository {
 	 * @param email
 	 */
 	public void clearCart(String email) {
-		
+
 		Customer customer = userRepository.getUserByEmail(email).getCustomer();
 		List<ShoppingCartItem> cartItems = customer.getShoppingCartItems();
-		
+
 		if (cartItems != null & cartItems.size() > 0) {
-			
+
 			for (ShoppingCartItem shoppingCartItem : cartItems) {
 				em.remove(shoppingCartItem);
-				//em.remove(em.contains(shoppingCartItem) ? shoppingCartItem : em.merge(shoppingCartItem));
+				// em.remove(em.contains(shoppingCartItem) ? shoppingCartItem :
+				// em.merge(shoppingCartItem));
 			}
 
 		}
@@ -95,7 +96,7 @@ public class ShoppingCartRepository {
 		Customer customer = userRepository.getUserByEmail(email).getCustomer();
 		List<ShoppingCartItem> cartItems = customer.getShoppingCartItems();
 		for (ShoppingCartItem shoppingCartItem : cartItems) {
-			
+
 		}
 		return cartItems;
 	}

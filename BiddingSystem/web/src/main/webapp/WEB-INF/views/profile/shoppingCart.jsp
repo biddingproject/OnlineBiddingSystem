@@ -14,10 +14,10 @@
 			<tr>
 				<form method="post" action="removeItemFromCart">
 					<input type="hidden" name="cartItemId" value="${cartItem.id}" />
-				<td>Item : ${cartItem.itemList.name}</td>
-				<td>Item Price : ${cartItem.itemList.buyItNowPrice}</td>
-				<td>Quantity : ${cartItem.quantity}</td>
-				<td><input type="submit" value="remove" /></td>
+					<td>Item : ${cartItem.itemList.name}</td>
+					<td>Item Price : ${cartItem.itemList.buyItNowPrice}</td>
+					<td>Quantity : ${cartItem.quantity}</td>
+					<td><input type="submit" value="remove" /></td>
 				</form>
 			</tr>
 		</table>
