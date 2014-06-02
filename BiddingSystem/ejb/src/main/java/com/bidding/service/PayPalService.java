@@ -39,7 +39,7 @@ public class PayPalService implements IPaymentService {
 	ItemListRepository itemListRepository;
 
 	/**
-	 * pay via shopping cart
+	 * pay for the shopping cart
 	 * 
 	 * @return
 	 */
