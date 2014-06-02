@@ -50,15 +50,15 @@ public class ItemListRepository {
 		TimeZone timeZone = cal.getTimeZone();
 		cal.add(Calendar.MILLISECOND, timeZone.getRawOffset());
 		Date timeCreated = cal.getTime();
-		
+
 		itemList.setSoldItemsCount(0);
 		itemList.setUnsoldItemCount(itemList.getNumberOfItems());
 		itemList.setItemListCreatedTime(timeCreated);
 		itemList.setCurrentBid(itemList.getBaseBid());
 		itemList.setItemCategory(itemCat);
-		
+
 		Seller seller = userRepository.findByEmail(email).getSeller();
-		
+
 		em.persist(itemList);
 		itemList.setSeller(seller);
 		seller.getAuctionedItemLists().add(itemList);
@@ -111,5 +111,19 @@ public class ItemListRepository {
 				.getResultList();
 
 		return itemLists;
+	}
+
+	/**
+	 * 
+	 * @param itemList
+	 * @return
+	 */
+	public String getSellerEmailByItemList(ItemList itemList) {
+
+		if (!em.contains(itemList)) {
+			em.merge(itemList);
+		}
+		String email = itemList.getSeller().getUser().getEmail();
+		return email;
 	}
 }

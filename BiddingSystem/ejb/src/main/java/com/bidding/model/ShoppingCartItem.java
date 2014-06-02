@@ -23,6 +23,8 @@ public class ShoppingCartItem {
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
+	
+	private boolean isPaymentWentWrong = false;
 
 	public ItemList getItemList() {
 		return itemList;
@@ -54,5 +56,13 @@ public class ShoppingCartItem {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public boolean isPaymentWentWrong() {
+		return isPaymentWentWrong;
+	}
+
+	public void setPaymentWentWrong(boolean isPaymentWentWrong) {
+		this.isPaymentWentWrong = isPaymentWentWrong;
 	}
 }

@@ -52,6 +52,9 @@ public class ShoppingCartService {
 	 * @return
 	 */
 	public boolean checkOutCart(String email) {
+
+		List<ShoppingCartItem> cartItems = shoppingCartRepository
+				.getShoppingCartItemsByEmail(email);
 		return false;
 	}
 
