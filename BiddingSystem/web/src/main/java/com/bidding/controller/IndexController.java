@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bidding.service.QueueService;
+import com.bidding.service.TestEmailService;
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
 import com.paypal.exception.InvalidCredentialException;
@@ -34,6 +35,9 @@ class IndexController {
 
 	 @EJB(mappedName = "java:app/BiddingSystem-ejb/QueueService")
 	 QueueService queueService;
+	 
+	 @EJB(mappedName = "java:app/BiddingSystem-ejb/TestEmailService")
+	 TestEmailService testEmailService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String displayIndex(ModelMap model) {
@@ -44,6 +48,12 @@ class IndexController {
 	@RequestMapping(value = "/pub", method = RequestMethod.GET)
 	public String pub(ModelMap model) {
 		queueService.publishMesssage();
+		return "index";
+	}
+	
+	@RequestMapping(value = "/sendEmail", method = RequestMethod.GET)
+	public String sendEmail(ModelMap model) {
+		testEmailService.sendEmail();
 		return "index";
 	}
 
