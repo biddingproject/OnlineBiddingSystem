@@ -136,14 +136,14 @@ public class ItemListController {
 	 * @return
 	 */
 	@RequestMapping(value = "/buyItem", method = RequestMethod.POST)
-	public String buyItem(ModelMap model,
-			@RequestParam(value = "itemListId", required = true) long itemListId) {
-		String email = SecurityContextHolder.getContext().getAuthentication()
-				.getName();
+	public String buyItem(
+			ModelMap model,
+			@RequestParam(value = "itemListId", required = true) long itemListId,
+			@RequestParam(value = "quantity", required = true) int quantity) {
 		ItemList itemList = itemListService.getItemListById(itemListId);
 		model.put("itemList", itemList);
-		model.put("buyerEmail", email);
-		
+		model.put("quantity", quantity);
+
 		return "/profile/buyItem";
 	}
 }

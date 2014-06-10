@@ -55,7 +55,11 @@ public class Transaction implements Serializable{
 	
 	private int quantity;
 	
+	private float disCountRate = 0.0f;
+	
 	private boolean isRefunded = false;
+	
+	private float transactionAmount;
 	
 	@OneToOne
 	private Refund refund;
@@ -146,6 +150,22 @@ public class Transaction implements Serializable{
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public float getDisCountRate() {
+		return disCountRate;
+	}
+
+	public void setDisCountRate(float disCountRate) {
+		this.disCountRate = disCountRate;
+	}
+
+	public float getTransactionAmount() {
+		return transactionAmount;
+	}
+
+	public void setTransactionAmount(float transactionAmount) {
+		this.transactionAmount = transactionAmount;
 	}
 	
 

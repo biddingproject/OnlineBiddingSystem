@@ -83,7 +83,7 @@ public class PayPalService implements IPaymentService {
 	 * @throws InvalidCredentialException
 	 * @throws SSLConfigurationException
 	 */
-	private Map<String, String> payTheSeller(float totalForSeller,
+	public Map<String, String> payTheSeller(float totalForSeller,
 			String sellerEmail, float totalForSystem)
 			throws SSLConfigurationException, InvalidCredentialException,
 			UnsupportedEncodingException, HttpErrorException,
